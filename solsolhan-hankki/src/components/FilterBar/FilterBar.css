@@ -1,0 +1,33 @@
+.filter-bar {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background: white;
+  border-bottom: 1px solid #f0f0f0;
+  overflow-x: auto;
+  justify-content: center;
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px;
+  background: #f8f9fa;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.filter-item:hover {
+  background: #e9ecef;
+}
+
+.arrow {
+  font-size: 10px;
+  color: #666;
+}
