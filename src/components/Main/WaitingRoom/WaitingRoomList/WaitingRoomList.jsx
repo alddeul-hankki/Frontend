@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import WaitingRoomCard from '../WaitingRoomCard/WaitingRoomCard';
-import './WaitingRoomList.css';
+import styles from './WaitingRoomList.module.css';
 
 const allWaitingRooms = [
   { id: 1, name: "신한치킨 강남점", deliveryAddress: "도서관 앞", orderDeadline: "11:30", eta: "12:10", amountToTarget: "5,000" },
@@ -15,18 +15,22 @@ const allWaitingRooms = [
   { id: 10, name: "처갓집 양재점", deliveryAddress: "도서관 앞", orderDeadline: "12:30", eta: "13:10", amountToTarget: "9,000" },
 ];
 
-const pageSize = 3;
+const pageSize = 3// 한 번에 로드할 개수
 
 const WaitingRoomList = () => {
   const [waitingRooms, setWaitingRooms] = useState([]);
-  const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const containerRef = useRef(null);
+  const currentItemsRef = useRef(0); // 현재 아이템 수를 추적하기 위한 ref
+  const isInitializedRef = useRef(false); // 초기화 여부를 추적하는 ref
 
   // 초기 데이터 로드
   useEffect(() => {
-    loadMoreData();
+    if (!isInitializedRef.current) {
+      isInitializedRef.current = true;
+      loadMoreData();
+    }
   }, []);
 
   // 추가 데이터 로드 함수 (가로 스크롤)
@@ -37,19 +41,23 @@ const WaitingRoomList = () => {
     
     // 실제 API 호출을 시뮬레이션
     setTimeout(() => {
-      const start = page * pageSize;
+      const currentPage = Math.floor(currentItemsRef.current / pageSize);
+      const start = currentPage * pageSize;
       const end = start + pageSize;
       const newData = allWaitingRooms.slice(start, end);
 
-      setWaitingRooms(prev => [...prev, ...newData]);
-      setPage(prev => prev + 1);
+      setWaitingRooms(prev => {
+        const updated = [...prev, ...newData];
+        currentItemsRef.current = updated.length; // ref 업데이트
+        return updated;
+      });
       setLoading(false);
 
       if(end >= allWaitingRooms.length) {
         setHasMore(false);
       }
     }, 500);
-  }, [loading, hasMore, page, pageSize]);
+  }, [loading, hasMore, pageSize]);
 
   // 스크롤 이벤트 핸들러
   const handleScroll = useCallback(()=>{
@@ -71,18 +79,18 @@ const WaitingRoomList = () => {
   }, [handleScroll]);
 
   return (
-    <div className="waiting-room-list">
-      <h3 className="section-subtitle">너만 땡기면 바로 주문</h3>
-      <div className="horizontal-scroll-container" ref={containerRef}>
-        <div className="horizontal-scroll-content">
+    <div className={styles.waitingRoomList}>
+      <h3 className={styles.sectionSubtitle}>너만 땡기면 바로 주문</h3>
+      <div className={styles.horizontalScrollContainer} ref={containerRef}>
+        <div className={styles.horizontalScrollContent}>
           {waitingRooms.map((room) => (
-            <div key={room.id} className="room-card-wrapper">
+            <div key={room.id} className={styles.roomCardWrapper}>
               <WaitingRoomCard room={room} />
             </div>
           ))}
           {loading && (
-            <div className="loading-indicator">
-              <div className="spinner"></div>
+            <div className={styles.loadingIndicator}>
+              <div className={styles.spinner}></div>
             </div>
           )}
         </div>

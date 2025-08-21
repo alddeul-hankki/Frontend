@@ -1,4 +1,4 @@
-.food-card {
+.restaurantCard {
   background: white;
   border-radius: 12px;
   overflow: hidden;
@@ -6,19 +6,19 @@
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.food-card:hover {
+.restaurantCard:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
-.food-image {
+.restaurantImage {
   width: 100%;
   height: 160px;
   background: #f8f9fa;
   position: relative;
 }
 
-.image-placeholder {
+.imagePlaceholder {
   width: 100%;
   height: 100%;
   background: linear-gradient(45deg, #e9ecef 25%, transparent 25%), 
@@ -32,43 +32,43 @@
   justify-content: center;
 }
 
-.image-placeholder span {
+.imagePlaceholder span {
   font-size: 24px;
   color: #adb5bd;
   font-weight: bold;
 }
 
-.food-info {
+.restaurantInfo {
   padding: 16px;
 }
 
-.food-name {
+.restaurantName {
   margin: 0 0 8px 0;
   font-size: 16px;
   font-weight: bold;
   color: #333;
 }
 
-.food-location {
+.restaurantLocation {
   margin: 0 0 4px 0;
   font-size: 14px;
   color: #666;
 }
 
-.food-details {
+.restaurantDetails {
   margin: 0 0 8px 0;
   font-size: 12px;
   color: #888;
 }
 
-.food-delivery {
+.restaurantDelivery {
   margin: 0 0 8px 0;
   font-size: 12px;
   color: #007bff;
   font-weight: 500;
 }
 
-.food-reviews {
+.restaurantReviews {
   display: flex;
   gap: 12px;
   margin: 0 0 8px 0;
@@ -76,7 +76,7 @@
   color: #666;
 }
 
-.target-amount {
+.restaurantTargetAmount {
   margin: 0;
   font-size: 12px;
   color: #ff6b35;
