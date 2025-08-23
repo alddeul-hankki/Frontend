@@ -1,0 +1,59 @@
+.main {
+  flex: 1;
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 80px); /* Header 높이만큼 제외 */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 300px; /* 음식 목록 : 대기실 = 1 : 0.3 */
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.foodSection {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.waitingSection {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+}
+
+.sectionTitle {
+  margin: 0 0 20px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 8px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .content {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .container {
+    padding: 16px;
+  }
+  
+  .foodSection,
+  .waitingSection {
+    padding: 16px;
+  }
+}

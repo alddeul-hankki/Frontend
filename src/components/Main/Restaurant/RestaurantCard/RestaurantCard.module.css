@@ -1,0 +1,84 @@
+.restaurantCard {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.restaurantCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.restaurantImage {
+  width: 100%;
+  height: 160px;
+  background: #f8f9fa;
+  position: relative;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #e9ecef 25%, transparent 25%), 
+              linear-gradient(-45deg, #e9ecef 25%, transparent 25%), 
+              linear-gradient(45deg, transparent 75%, #e9ecef 75%), 
+              linear-gradient(-45deg, transparent 75%, #e9ecef 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagePlaceholder span {
+  font-size: 24px;
+  color: #adb5bd;
+  font-weight: bold;
+}
+
+.restaurantInfo {
+  padding: 16px;
+}
+
+.restaurantName {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.restaurantLocation {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.restaurantDetails {
+  margin: 0 0 8px 0;
+  font-size: 12px;
+  color: #888;
+}
+
+.restaurantDelivery {
+  margin: 0 0 8px 0;
+  font-size: 12px;
+  color: #007bff;
+  font-weight: 500;
+}
+
+.restaurantReviews {
+  display: flex;
+  gap: 12px;
+  margin: 0 0 8px 0;
+  font-size: 12px;
+  color: #666;
+}
+
+.restaurantTargetAmount {
+  margin: 0;
+  font-size: 12px;
+  color: #ff6b35;
+  font-weight: 500;
+}
