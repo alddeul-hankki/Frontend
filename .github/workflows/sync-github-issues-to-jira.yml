@@ -145,40 +145,19 @@ jobs:
           fi
           ENC_KEY=$(printf '%s' "$KEY" | jq -sRr @uri)
           
-          primary="${DONE_NAME:-Done}"
-          candidates=$(jq -r --arg p "$primary" '
-            [ .transitions[].name ] 
-            | (map(ascii_downcase) | unique) 
-            | . + ["완료","close issue","resolve issue","mark as done"]
-            | unique
-          ' /tmp/jira_trans.json)
+          TRANS=$(curl -sS -u "$JIRA_EMAIL:$JIRA_TOKEN" \
+            "$JIRA_BASE/rest/api/3/issue/$ENC_KEY/transitions")
 
-          id=""
-          while IFS= read -r cand; do
-            cand=${cand//\"/} 
-            id=$(jq -r --arg n "$cand" '
-              .transitions[] | select((.name|ascii_downcase)==$n) | .id' /tmp/jira_trans.json)
-            if [[ -n "$id" && "$id" != "null" ]]; then
-              echo "Picked transition: $cand (id=$id)"
-              break
-            fi
-          done <<<"$(echo "$candidates" | jq -r '.[]')"
-
-          if [[ -z "${id:-}" ]]; then
-            echo "No matching Done-like transition. Skipping."; exit 0
-          fi
-
-          payload=$(jq -n --arg id "$id" '{transition:{id:$id}}')
-          http=$(curl --fail-with-body -sS -u "$JIRA_EMAIL:$JIRA_TOKEN" \
+          ID=$(printf '%s' "$TRANS" | jq -r '
+            .transitions[]
+            | select((.name|ascii_downcase)=="done" or .name=="완료")
+            | .id' | head -n1)
+          curl -sS --fail-with-body -u "$JIRA_EMAIL:$JIRA_TOKEN" \
             -H "Content-Type: application/json" \
-            -o /tmp/jira_do.json -w "%{http_code}" \
             -X POST "$JIRA_BASE/rest/api/3/issue/$ENC_KEY/transitions" \
-            --data "$payload" || true)
-          echo "Do-transition HTTP: $http"
-          if [[ "$http" != "204" ]]; then
-            echo "Transition failed:"; cat /tmp/jira_do.json; exit 1
-          fi
-          echo "Transitioned $KEY -> Done"
+            --data "$(jq -n --arg id "$ID" '{transition:{id:$id}}')"
+          
+          echo "Transitioned $KEY -> Done/완료"
 
       - name: Reopen in Jira on GH issue reopen (to In Progress / To Do)
         if: github.event.action == 'reopened' && steps.key.outputs.key != ''
