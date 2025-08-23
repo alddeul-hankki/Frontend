@@ -133,20 +133,52 @@ jobs:
           JIRA_BASE:   ${{ steps.prep.outputs.base }}
           JIRA_EMAIL:  ${{ secrets.JIRA_USER_EMAIL }}
           JIRA_TOKEN:  ${{ secrets.JIRA_API_TOKEN }}
-          KEY:         ${{ steps.key.outputs.key }}
+          KEY_RAW:     ${{ steps.key.outputs.key }}
           DONE_NAME:   ${{ vars.JIRA_DONE_NAME }}
         run: |
           set -euo pipefail
-          name="${DONE_NAME:-Done}"
-          trans=$(curl -sS -u "$JIRA_EMAIL:$JIRA_TOKEN" "$JIRA_BASE/rest/api/3/issue/$KEY/transitions")
-          echo "Available transitions:"; echo "$trans" | jq -r '.transitions[].name'
-          id=$(echo "$trans" | jq -r --arg n "$name" '.transitions[] | select(.name==$n) | .id')
-          if [ -z "$id" ]; then
-            echo "No transition named '$name'"; exit 0
+          
+          if [[ "$KEY_RAW" =~ ([A-Z][A-Z0-9_]+-[0-9]+) ]]; then
+            KEY="${BASH_REMATCH[1]}"
+          else
+            echo "Invalid KEY: '$KEY_RAW'"; exit 1
           fi
-          curl --fail-with-body -sS -u "$JIRA_EMAIL:$JIRA_TOKEN" -H "Content-Type: application/json" \
-            -X POST "$JIRA_BASE/rest/api/3/issue/$KEY/transitions" \
-            --data "$(jq -n --arg id "$id" '{transition:{id:$id}}')"
+          ENC_KEY=$(printf '%s' "$KEY" | jq -sRr @uri)
+          
+          primary="${DONE_NAME:-Done}"
+          candidates=$(jq -r --arg p "$primary" '
+            [ .transitions[].name ] 
+            | (map(ascii_downcase) | unique) 
+            | . + ["완료","close issue","resolve issue","mark as done"]
+            | unique
+          ' /tmp/jira_trans.json)
+
+          id=""
+          while IFS= read -r cand; do
+            cand=${cand//\"/} 
+            id=$(jq -r --arg n "$cand" '
+              .transitions[] | select((.name|ascii_downcase)==$n) | .id' /tmp/jira_trans.json)
+            if [[ -n "$id" && "$id" != "null" ]]; then
+              echo "Picked transition: $cand (id=$id)"
+              break
+            fi
+          done <<<"$(echo "$candidates" | jq -r '.[]')"
+
+          if [[ -z "${id:-}" ]]; then
+            echo "No matching Done-like transition. Skipping."; exit 0
+          fi
+
+          payload=$(jq -n --arg id "$id" '{transition:{id:$id}}')
+          http=$(curl --fail-with-body -sS -u "$JIRA_EMAIL:$JIRA_TOKEN" \
+            -H "Content-Type: application/json" \
+            -o /tmp/jira_do.json -w "%{http_code}" \
+            -X POST "$JIRA_BASE/rest/api/3/issue/$ENC_KEY/transitions" \
+            --data "$payload" || true)
+          echo "Do-transition HTTP: $http"
+          if [[ "$http" != "204" ]]; then
+            echo "Transition failed:"; cat /tmp/jira_do.json; exit 1
+          fi
+          echo "Transitioned $KEY -> Done"
 
       - name: Reopen in Jira on GH issue reopen (to In Progress / To Do)
         if: github.event.action == 'reopened' && steps.key.outputs.key != ''
