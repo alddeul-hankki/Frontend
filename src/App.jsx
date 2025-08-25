@@ -2,13 +2,18 @@ import React, { useEffect } from 'react';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import './App.css';
-import { getStoresByCategory } from './util/ddangApi';
-
+import { getRestaurants } from './util/ddangApi';
 
 function App() {
 
+  // api 호출 test 용 코드
   useEffect(() => {
-    getStoresByCategory("36.11176327871577", "03", "128.42631888739962", "4719067000").then(response => {
+    getRestaurants({
+      category_cd: "03", // 03 : 치킨집 
+      sort_cd: "07", // 07 : 기본순
+      page_no: 1,
+      page_size: 30
+    }).then(response => {
       console.log(response);
     });
   }, []);

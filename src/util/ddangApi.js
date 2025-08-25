@@ -1,91 +1,77 @@
-import { post } from './api';
+import { ddangyoApi } from './api.js';
 
 /**
- * 카테고리별 가게 리스트 조회
- * @param {*} map_latt 위도
- * @param {*} category_cd 카테고리 코드
- * @param {*} map_lngt 경도
- * @param {*} admtn_dong_cd 동 코드
- * @returns 
+ * 가게 목록 조회 (POST 요청)
+ * @param {Object} requestBody - 요청 body 객체
+ * @param {string} requestBody.category_cd - 카테고리 코드 ('03' for 치킨, '04' for 피자)
+ * @param {string} requestBody.sort_cd - 정렬 코드 ('06' for 리뷰순, '05' for 맛있어요순)
+ * @param {number} requestBody.page_no - 페이지 번호 (기본값: 1)
+ * @param {number} requestBody.page_size - 페이지 크기 (기본값: 30)
+ * @param {number} requestBody.map_lngt - 경도
+ * @param {number} requestBody.map_latt - 위도
+ * @returns {Promise<Array>} 가게 목록 데이터
  */
-async function getStoresByCategory(map_latt, category_cd, map_lngt, admtn_dong_cd) {
-    const body = {
-        dma_pack_search: {
-            map_latt: map_latt,
-            category_cd: category_cd,
-            map_lngt: map_lngt,
-            admtn_dong_cd: admtn_dong_cd
-        }
-    };
-    
-    const response = await post('/home/cat/section/patsto-list', body);
-    return response;
-}
-
-// 공통 파라미터 생성 함수
-function createCommonParams(map_latt, map_lngt, category_cd, admtn_dong_cd, page_no = 1, page_size = 30) {
-    return {
-        admtn_dong_cd: admtn_dong_cd.toString(),
-        sort_cd: "01", // 기본값
-        reuse_cd: "00",
+export const getRestaurants = async (requestBody) => {
+    const defaultBody = {
         sale_bnft_filter_cd: "000",
         onnuri_cd: "00",
-        min_ord_amt_filter_cd: "4",
         delv_fee_filter_cd: "4",
-        category_cd: category_cd.toString(),
-        page_size: page_size,
-        page_no: page_no,
-        map_latt: map_latt,
-        map_lngt: map_lngt
+        min_ord_amt_filter_cd: "4",
+        reuse_cd: "00",
+        page_no: 1,
+        page_size: 30,
+        ...requestBody
     };
-}
 
-// 정렬 옵션별 가게 리스트 조회 함수들
-async function getStoresBySort(map_latt, map_lngt, category_cd, admtn_dong_cd, sort_cd, page_no = 1, page_size = 30) {
-    const body = createCommonParams(map_latt, map_lngt, category_cd, admtn_dong_cd, page_no, page_size);
-    body.sort_cd = sort_cd;
-    
-    const response = await post('/home/delivery/patsto-list', body);
-    return response;
-}
+    const response = await ddangyoApi.post('/restaurants', defaultBody);
+    return response.data;
+};
 
-// 추천순
-async function getStoresByRecommendation(map_latt, map_lngt, category_cd, admtn_dong_cd, page_no = 1, page_size = 30) {
-    return await getStoresBySort(map_latt, map_lngt, category_cd, admtn_dong_cd, "01", page_no, page_size);
-}
+/**
+ * 특정 가게의 상세 정보를 조회합니다 (POST 요청)
+ * @param {string} patstoNo - 가게 고유 번호
+ * @param {Object} additionalData - 추가 데이터 (선택사항)
+ * @returns {Promise<Object>} 가게 상세 데이터
+ */
+export const getRestaurantDetail = async (patstoNo, additionalData = {}) => {
+    const requestBody = {
+        dma_shop_search: {
+            login_mbr_id: "",
+            patsto_no: patstoNo,
+            admtn_dong_cd: "4146354000",
+            map_latt: "37.2283608",
+            map_lngt: "127.1126139",
+            patsto_tab_div_cd: "01",
+            exps_chan: "01",
+            rest_patsto_yn: "0",
+            ...additionalData
+        }
+    };
 
-// 주문 많은 순
-async function getStoresByOrderCount(map_latt, map_lngt, category_cd, admtn_dong_cd, page_no = 1, page_size = 30) {
-    return await getStoresBySort(map_latt, map_lngt, category_cd, admtn_dong_cd, "03", page_no, page_size);
-}
+    const response = await ddangyoApi.post('/restaurants/detail', requestBody);
+    return response.data;
+};
 
-// 배달 빠른 순
-async function getStoresByDeliverySpeed(map_latt, map_lngt, category_cd, admtn_dong_cd, page_no = 1, page_size = 30) {
-    return await getStoresBySort(map_latt, map_lngt, category_cd, admtn_dong_cd, "04", page_no, page_size);
-}
+// --- 편의 함수들 ---
 
-// 맛있어요 많은 순
-async function getStoresByTasteRating(map_latt, map_lngt, category_cd, admtn_dong_cd, page_no = 1, page_size = 30) {
-    return await getStoresBySort(map_latt, map_lngt, category_cd, admtn_dong_cd, "05", page_no, page_size);
-}
+/**
+ * 맛있어요 많은 순으로 가게 목록 조회
+ */
+export const getRestaurantsByTasteRating = async (category_cd, options = {}) => {
+    return await getRestaurants({
+        category_cd,
+        sort_cd: "05",
+        ...options
+    });
+};
 
-// 찜 많은 순
-async function getStoresByFavoriteCount(map_latt, map_lngt, category_cd, admtn_dong_cd, page_no = 1, page_size = 30) {
-    return await getStoresBySort(map_latt, map_lngt, category_cd, admtn_dong_cd, "06", page_no, page_size);
-}
-
-// 가까운 순
-async function getStoresByDistance(map_latt, map_lngt, category_cd, admtn_dong_cd, page_no = 1, page_size = 30) {
-    return await getStoresBySort(map_latt, map_lngt, category_cd, admtn_dong_cd, "07", page_no, page_size);
-}
-
-export { 
-    getStoresByCategory,
-    getStoresBySort,
-    getStoresByRecommendation,
-    getStoresByOrderCount,
-    getStoresByDeliverySpeed,
-    getStoresByTasteRating,
-    getStoresByFavoriteCount,
-    getStoresByDistance
+/**
+ * 리뷰 많은 순으로 가게 목록 조회
+ */
+export const getRestaurantsByReviewCount = async (category_cd, options = {}) => {
+    return await getRestaurants({
+        category_cd,
+        sort_cd: "06",
+        ...options
+    });
 };
