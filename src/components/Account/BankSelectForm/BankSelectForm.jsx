@@ -23,7 +23,6 @@ const BankSelectForm = ({ isOpen, account }) => {
           navigate('/verify-transaction', { 
             state: { 
               account: account,
-              verificationResult: result 
             }
           });
         }, 600); // 애니메이션 시간과 맞춤
