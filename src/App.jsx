@@ -1,27 +1,53 @@
-import React, { useEffect } from 'react';
 import Header from './components/Header/Header';
-import Main from './components/Main/Main';
+import Solsolhanhankki from './pages/Solsolhanhankki/Solsolhanhankki';
+import DdangyoMock from './pages/DdangyoMock';
+import RestaurantDetail from './pages/RestaurantDetail/RestaurantDetail';
+import MenuDetail from './pages/MenuDetail/MenuDetail';
 import './App.css';
-import { getRestaurants } from './util/ddangApi';
-
+import { useFCM } from './hooks/useFCM';
+import { useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 function App() {
+  
+  const location = useLocation();
+  const{
+    token,
+    notification,
+    isLoading,
+    permission,
+    requestPermission,
+    refreshToken,
+    logout,
+  } = useFCM();
 
-  // api 호출 test 용 코드
+  // 컴포넌트 마운트 시 권한 요청
   useEffect(() => {
-    getRestaurants({
-      category_cd: "03", // 03 : 치킨집 
-      sort_cd: "07", // 07 : 기본순
-      page_no: 1,
-      page_size: 30
-    }).then(response => {
-      console.log(response);
-    });
-  }, []);
+    requestPermission();
+  }, [requestPermission]);
+
+  //알림 수신 시 처리
+  useEffect(() => {
+    if(notification){
+      console.log('알림 수신 : ', notification);
+    }
+  }, [notification]);
+
+
+  // 라우트 변경시마다 스크롤 상단으로
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
 
   return (
     <div className="App">
       <Header />
-      <Main />  
+      <Routes>
+        <Route path="/solsolhanhankki" element={<Solsolhanhankki />} />
+        <Route path="/ddangyo-mock" element={<DdangyoMock />} />
+        <Route path="/restaurants/:id" element={<RestaurantDetail />} />
+        <Route path="/menus/:menuId" element={<MenuDetail />} />  
+      </Routes>
     </div>
   );
 }
