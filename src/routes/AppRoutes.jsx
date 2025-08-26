@@ -3,8 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import HeyMainPage from '../pages/heyyoung/Main/HeyMainPage';
 import SolMainPage from '../pages/solsolhanhankki/Main/SolMainPage';
 import WalletMainPage from '../pages/heyyoung/Wallet/WalletMainPage/WalletMainPage';
-import AccountManagePage from '../pages/heyyoung/Wallet/AccountManagePage/AccountManagePage'
-import AccountConnectPage from '../pages/heyyoung/Wallet/AccountConnectPage/AccountConnectPage'
+import AccountManagePage from '../pages/heyyoung/Account/AccountManagePage/AccountManagePage'
+import AccountConnectPage from '../pages/heyyoung/Account/AccountConnectPage/AccountConnectPage'
 import VerifyTransactionPage from '../pages/external/VerifyTransactionPage/VerifyTransactionPage';
 
 const AppRoutes = () => {
