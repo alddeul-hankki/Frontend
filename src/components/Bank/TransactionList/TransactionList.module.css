@@ -1,0 +1,162 @@
+.listContainer {
+  background: white;
+  flex: 1;
+}
+
+.dateHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.dateRange {
+  font-size: 14px;
+  color: #666;
+}
+
+.toggleButton {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.toggle {
+  background: #f0f0f0;
+  border-radius: 20px;
+  padding: 2px;
+  display: flex;
+}
+
+.toggleOption {
+  padding: 6px 12px;
+  border-radius: 18px;
+  font-size: 12px;
+  color: #666;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.toggleOption.active {
+  background: white;
+  color: #333;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.transactionGroup {
+  padding: 0 16px;
+}
+
+.dateTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  padding: 20px 0 16px 0;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 0;
+}
+
+.transactionItem {
+  display: flex;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #f8f8f8;
+  gap: 12px;
+}
+
+.date {
+  padding-right: 12px;
+}
+
+.time {
+  position: relative;
+  padding-left: 12px; /* 구분선과 내용 사이 여백 */
+}
+
+.time::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;             /* 선 두께 */
+  height: 70%;            /* 선 길이 (텍스트 높이에 맞춤) */
+  background-color: #ccc; /* 회색 구분선 */
+}
+
+.transactionItem:last-child {
+  border-bottom: none;
+}
+
+.transactionTime {
+  font-size: 13px;
+  color: #999;
+  white-space: nowrap;
+}
+
+.transactionDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.transactionDescription {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.transactionAmount {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.amountContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.transactionType {
+  font-size: 12px;
+  color: #999;
+}
+
+.deposit {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2196f3;
+}
+
+.withdrawal {
+  font-size: 16px;
+  font-weight: 600;
+  color: #f44336;
+}
+
+/* 모바일 최적화 */
+@media (max-width: 768px) {
+  .transactionItem {
+    padding: 12px 0;
+  }
+  
+  .transactionTime {
+    width: 50px;
+    font-size: 12px;
+  }
+  
+  .transactionDescription {
+    font-size: 15px;
+  }
+  
+  .deposit,
+  .withdrawal {
+    font-size: 15px;
+  }
+}

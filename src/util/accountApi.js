@@ -24,6 +24,16 @@ export const createAccount = async (email) => {
   }
 };
 
+export const getAccountTransactions = async (transactionRequest) => {
+  try {
+    const response = await api.post(baseURL + '/api/accounts/transactions', transactionRequest);
+    return response.data;
+  } catch (error) {
+    console.error('거래내역 조회 실패:', error);
+    throw error;
+  }
+};
+
 export default {
   getAccounts,
   createAccount
