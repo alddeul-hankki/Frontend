@@ -1,0 +1,137 @@
+.summaryContainer {
+  background: linear-gradient(135deg, #a8d5ff 0%, #c4e3ff 100%);
+  padding: 24px 16px;
+  margin: 0;
+}
+
+.accountInfo {
+  margin-bottom: 24px;
+}
+
+.bankSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.bankIcon {
+  flex-shrink: 0;
+}
+
+.accountDetails {
+  flex: 1;
+}
+
+.accountType {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.accountLabel {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.savingsType {
+  font-size: 14px;
+  color: #666;
+}
+
+.dropdown {
+  cursor: pointer;
+}
+
+.accountNumber {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.copyButton {
+  background: none;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settingsButton {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+.settingsButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.balanceSection {
+  margin-bottom: 24px;
+}
+
+.currentBalance {
+  margin-bottom: 8px;
+}
+
+.balanceAmount {
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+}
+
+.availableBalance {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.availableLabel {
+  font-size: 13px;
+  color: #666;
+}
+
+.availableAmount {
+  font-size: 13px;
+  color: #666;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 12px;
+}
+
+.actionButton {
+  flex: 1;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.actionButton:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.actionButton:active {
+  transform: translateY(0);
+}
