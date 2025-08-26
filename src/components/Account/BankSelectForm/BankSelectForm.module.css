@@ -1,0 +1,256 @@
+/* 기존 스타일 유지 */
+.formContainer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out, opacity 0.3s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  margin: 0 48px 16px 48px; /* 1번 스텝 넘버 다음부터 시작 */
+}
+
+.formContainer.open {
+  max-height: 400px;
+  opacity: 1;
+}
+
+/* 페이지 전환 시 슬라이드 아웃 */
+.formContainer.slideOut {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.formContent {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: 2px solid #6366f1;
+}
+
+.inputGroup {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.select {
+  width: 100%;
+  height: 48px;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 0 16px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  padding-right: 48px;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(0, 85, 255, 0.2);
+}
+
+.select:disabled {
+  background-color: #f8f9fa;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.input {
+  width: 100%;
+  height: 48px;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 0 16px;
+  font-size: 16px;
+  color: #333;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(0, 85, 255, 0.2);
+}
+
+.input::placeholder {
+  color: #999;
+}
+
+.notice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #f0f8ff;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.notice span {
+  font-size: 13px;
+  color: #1976d2;
+  line-height: 1.4;
+}
+
+.confirmButton {
+  width: 100%;
+  height: 48px;
+  background: #e0e0e0;
+  color: #999;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: not-allowed;
+  transition: all 0.3s ease;
+}
+
+.confirmButton.active {
+  background: #6366f1;
+  color: white;
+  cursor: pointer;
+  transform: translateY(0);
+}
+
+.confirmButton.active:hover {
+  background: #6366f1;
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 3px rgba(0, 85, 255, 0.2);
+}
+
+.confirmButton.active:active {
+  transform: translateY(0);
+}
+
+.confirmButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 애니메이션 효과 */
+.formContent > * {
+  animation: slideInUp 0.4s ease-out;
+  animation-fill-mode: both;
+}
+
+.formContent > *:nth-child(1) { animation-delay: 0.1s; }
+.formContent > *:nth-child(2) { animation-delay: 0.2s; }
+.formContent > *:nth-child(3) { animation-delay: 0.3s; }
+.formContent > *:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 페이지 전환 애니메이션 추가 */
+.transitionOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.8);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transitionOverlay.transitioning {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.loadingContent {
+  text-align: center;
+  color: white;
+  animation: slideUp 0.6s ease-out 0.2s both;
+}
+
+.loadingContent p {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 16px;
+  opacity: 0;
+  animation: fadeIn 0.4s ease-out 0.4s both;
+}
+
+/* 스피너 애니메이션 */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: spin 1s linear infinite;
+}
+
+/* 키프레임 애니메이션 */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* 모바일 최적화 */
+@media (max-width: 768px) {
+  .formContainer {
+    margin: 0 16px 16px 16px;
+  }
+  
+  .transitionOverlay {
+    padding: 20px;
+  }
+  
+  .loadingContent p {
+    font-size: 16px;
+  }
+}
