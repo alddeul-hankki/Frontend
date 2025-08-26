@@ -15,4 +15,28 @@ export const post = async (endpoint, body) => {
     return response.data;
 };
 
+// GET 요청
+export const get = async (endpoint, params = {}) => {
+    const response = await api.get(endpoint, { params });
+    return response.data;
+};
+
+// PUT 요청
+export const put = async (endpoint, body) => {
+    const response = await api.put(endpoint, body);
+    return response.data;
+};
+
+// PATCH 요청
+export const patch = async (endpoint, body) => {
+    const response = await api.patch(endpoint, body);
+    return response.data;
+};
+
+// DELETE 요청
+export const del = async (endpoint, body = {}) => {
+    const response = await api.delete(endpoint, { data: body });
+    return response.data;
+};
+
 export default api;
