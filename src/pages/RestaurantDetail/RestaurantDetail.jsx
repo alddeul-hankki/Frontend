@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getRestaurantDetail, getRestaurantInfo } from '../../util/ddangApi';
-import Cart from '../../components/Cart/Cart';
 import styles from './RestaurantDetail.module.css';
 
 const RestaurantDetail = () => {
@@ -345,12 +344,6 @@ const RestaurantDetail = () => {
         ))}
       </div>
 
-      <Cart 
-        cartItems={cartItems}
-        onRemoveItem={handleRemoveFromCart}
-        onOrderClick={handleOrderClick}
-        isVisible={cartItems.length > 0}
-      />
     </div>
   );
 };
