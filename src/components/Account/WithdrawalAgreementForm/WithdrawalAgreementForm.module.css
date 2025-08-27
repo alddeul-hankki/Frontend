@@ -1,0 +1,162 @@
+.formContainer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  background: white;
+  border-radius: 8px;
+}
+
+.formContainer.open {
+  max-height: 600px;
+}
+
+.formContent {
+  padding: 24px;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.agreementItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.agreementItem:last-child {
+  border-bottom: none;
+}
+
+.allAgreement {
+  font-weight: 600;
+  color: #333;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  flex: 1;
+}
+
+.checkbox {
+  display: none;
+}
+
+.checkboxIcon {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  transition: all 0.2s;
+}
+
+.checkbox:checked + .checkboxIcon {
+  background: #6366f1;
+  border-color: #6366f1;
+}
+
+.checkmark {
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.agreementText {
+  font-size: 14px;
+  color: #333;
+}
+
+.required {
+  color: #dc3545;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.detailButton {
+  padding: 6px 12px;
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.detailButton:hover {
+  background: #f8f9fa;
+  border-color: #ccc;
+}
+
+.divider {
+  height: 1px;
+  background: #ddd;
+  margin: 16px 0;
+}
+
+.agreementList {
+  margin-bottom: 24px;
+}
+
+.confirmButton {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #e9ecef;
+  color: #6c757d;
+  margin-bottom: 16px;
+}
+
+.confirmButton.active {
+  background: #6366f1;
+  color: white;
+}
+
+.confirmButton.active:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+.confirmButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.notice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: #e3f2fd;
+  border: 1px solid #bbdefb;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #1976d2;
+}
