@@ -1,11 +1,21 @@
 import styles from './BankSelectForm.module.css';
 import { verifyAccount } from '../../../util/accountAuthApi';
 import { useNavigate } from 'react-router-dom';
+import { createPortal } from 'react-dom';
 import { useState } from 'react';
 
 const BankSelectForm = ({ isOpen, account }) => {
   const navigate = useNavigate();
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const overlayContent = (
+    <div className={`${styles.transitionOverlay} ${isTransitioning ? styles.transitioning : ''}`}>
+      <div className={styles.loadingContent}>
+        <div className={styles.spinner}></div>
+        <p>거래내역을 확인하기 위해 <br/> 신한은행 앱으로 이동합니다.</p>
+      </div>
+    </div>
+  );
 
   const handleVerify = async () => {
     try {
@@ -15,8 +25,14 @@ const BankSelectForm = ({ isOpen, account }) => {
       console.log('검증 결과:', result);
       
       if (result.status === 200) {
-        // 페이지 전환 애니메이션 시작
         setIsTransitioning(true);
+        
+        // sessionStorage에 상태 저장
+        sessionStorage.setItem('accountVerificationState', JSON.stringify({
+          accountVerified: true,
+          account: account,
+          timestamp: Date.now()
+        }));
         
         // 애니메이션 완료 후 페이지 이동
         setTimeout(() => {
@@ -25,7 +41,8 @@ const BankSelectForm = ({ isOpen, account }) => {
               account: account,
             }
           });
-        }, 600); // 애니메이션 시간과 맞춤
+          setIsTransitioning(false);
+        }, 3000); // 애니메이션 시간과 맞춤
       }
     } catch (error) {
       console.error('검증 실패:', error);
@@ -35,13 +52,8 @@ const BankSelectForm = ({ isOpen, account }) => {
 
   return (
     <>
-      {/* 페이지 전환 오버레이 */}
-      <div className={`${styles.transitionOverlay} ${isTransitioning ? styles.transitioning : ''}`}>
-        <div className={styles.loadingContent}>
-          <div className={styles.spinner}></div>
-          <p>거래내역을 불러오는 중...</p>
-        </div>
-      </div>
+      {/* Portal을 사용해서 body에 직접 렌더링 */}
+      {createPortal(overlayContent, document.body)}
 
       <div className={`${styles.formContainer} ${isOpen ? styles.open : ''} ${isTransitioning ? styles.slideOut : ''}`}>
         <div className={styles.formContent}>

@@ -1,29 +1,22 @@
-/* 기존 스타일 유지 */
 .formContainer {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease-in-out, opacity 0.3s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0;
-  margin: 0 48px 16px 48px; /* 1번 스텝 넘버 다음부터 시작 */
+  transition: max-height 0.3s ease-in-out;
+  background: white;
+  border-radius: 8px;
 }
 
 .formContainer.open {
-  max-height: 400px;
-  opacity: 1;
+  max-height: 500px;
 }
 
-/* 페이지 전환 시 슬라이드 아웃 */
 .formContainer.slideOut {
   transform: translateX(-100%);
   opacity: 0;
 }
 
 .formContent {
-  background: white;
-  border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  border: 2px solid #6366f1;
 }
 
 .inputGroup {
@@ -97,6 +90,7 @@
   gap: 8px;
   padding: 12px 16px;
   background: #f0f8ff;
+  border: 1px solid #bbdefb;
   border-radius: 8px;
   margin-bottom: 20px;
 }
@@ -143,16 +137,6 @@
   transform: none;
 }
 
-/* 애니메이션 효과 */
-.formContent > * {
-  animation: slideInUp 0.4s ease-out;
-  animation-fill-mode: both;
-}
-
-.formContent > *:nth-child(1) { animation-delay: 0.1s; }
-.formContent > *:nth-child(2) { animation-delay: 0.2s; }
-.formContent > *:nth-child(3) { animation-delay: 0.3s; }
-.formContent > *:nth-child(4) { animation-delay: 0.4s; }
 
 @keyframes slideInUp {
   from {
@@ -165,13 +149,14 @@
   }
 }
 
-/* 페이지 전환 애니메이션 추가 */
 .transitionOverlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  width: 100vw;
+  height: 100vh;
   background: linear-gradient(135deg, #6366f1, #8b5cf6);
   display: flex;
   align-items: center;
