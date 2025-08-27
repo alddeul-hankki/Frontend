@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import AccountCard from '../AccountCard/AccountCard';
 import BankList from '../BankList/BankList';
 import AddAccountButton from '../AddAccountButton/AddAccountButton';
-import PageHeader from '../../PageHeader/PageHeader'
 import styles from './AccountManageContainer.module.css';
 import { getAccounts } from '../../../util/accountApi';
 
@@ -98,7 +97,6 @@ const AccountManageContainer = () => {
   if (loading) {
     return (
       <div className={styles.container}>
-        <PageHeader title="연결계좌" />
         <div className={styles.loadingContainer}>
           <div className={styles.loading}>계좌 정보를 불러오는 중...</div>
         </div>
@@ -108,8 +106,6 @@ const AccountManageContainer = () => {
 
   return (
     <div className={styles.container}>
-      <PageHeader title="연결계좌" />
-      
       <div className={styles.pageContent}>
         <div className={styles.myAccountSection}>
           <div className={styles.sectionHeader}>
