@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import FilterBar from './FilterBar/FilterBar';
-import RestaurantList from './Restaurant/RestaurantList/RestaurantList';
-import WaitingRoomList from './WaitingRoom/WaitingRoomList/WaitingRoomList';
+import FilterBar from '../../components/SolsolMain/FilterBar/FilterBar';
+import RestaurantList from '../../components/SolsolMain/Restaurant/RestaurantList/RestaurantList';
+import WaitingRoomList from '../../components/SolsolMain/WaitingRoom/WaitingRoomList/WaitingRoomList';
 
 export default function Solsolhanhankki() {
   const [filters, setFilters] = useState({
