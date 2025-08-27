@@ -1,0 +1,102 @@
+.stepItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 16px;
+}
+
+.stepNumber {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #6366f1;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.stepNumber.disabled {
+  background: #e0e0e0;
+  color: #999;
+}
+
+.selectButton {
+  flex: 1;
+  height: 56px;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  color: #333;
+  position: relative;
+  overflow: hidden;
+}
+
+.selectButton.active {
+  border-color: #6366f1;
+  background: #f0f7ff;
+}
+
+.selectButton.completed {
+  border-color: #e0e0e0;
+  background: #eff2f6;
+}
+
+.dropdownIcon {
+  transition: transform 0.3s ease;
+}
+
+.dropdownIcon.rotated {
+  transform: rotate(180deg);
+}
+
+/* 계좌 정보 (완료 상태) */
+.accountInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bankName {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+.accountNumber {
+  font-size: 13px;
+  color: #666;
+}
+
+.formWrapper {
+  /* 애니메이션을 위한 기본 설정 */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.formWrapper.open {
+  /* 열린 상태 */
+  max-height: 1000px; /* 충분히 큰 값 */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 더 부드러운 애니메이션을 원한다면 */
+.formWrapper.smooth {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
