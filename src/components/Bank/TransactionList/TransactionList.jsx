@@ -2,7 +2,7 @@ import styles from './TransactionList.module.css';
 import { useEffect, useState } from "react";
 import { getAccountTransactions } from './../../../util/accountApi';
 
-const TransactionList = ({ accountId }) => {
+const TransactionList = ({ accountId, onBalancesFetched }) => {
   const [transactions, setTransactions] = useState([]);
   
   useEffect(() => {
@@ -17,13 +17,18 @@ const TransactionList = ({ accountId }) => {
 
         const data = await getAccountTransactions(transactionRequest);
         setTransactions(data.data);
+        
+        // 잔액 정보 콜백 전달
+        if (onBalancesFetched) {
+          onBalancesFetched(data.data[0].afterBalance);
+        }
       } catch (error) {
         console.error("거래내역 가져오기 실패:", error);
       }
     };
 
     fetchTransactions();
-  }, [accountId]);
+  }, [accountId, onBalancesFetched]);
 
   // 오늘 날짜
   const today = new Date();
