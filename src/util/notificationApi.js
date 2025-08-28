@@ -50,4 +50,3 @@ export const deleteFCMToken = async (token) => {
         throw error;
     }
 };
-

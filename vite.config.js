@@ -31,11 +31,14 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 4173,
     proxy: {
-      '/api': { target: 'http://172.30.1.83:8080', changeOrigin: true, secure: false }
+      '/api': { target: 'http://192.168.100.122:8080', changeOrigin: true, secure: false }
     }
   },
   preview: {
-    allowedHosts: ['localhost', '127.0.0.1', 'https://3194e5124b68.ngrok-free.app', '.ngrok-free.app']
+    allowedHosts: ['localhost', '127.0.0.1', 'https://4ec5b4ac7a4c.ngrok-free.app', '.ngrok-free.app'],
+    proxy: {
+      '/api': { target: 'http://192.168.100.122:8080', changeOrigin: true, secure: false }
+    }
   },
   css: {
     modules: { localsConvention: 'camelCase', generateScopedName: '[name]__[local]___[hash:base64:5]' }
