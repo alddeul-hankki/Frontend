@@ -1,0 +1,90 @@
+.accountCard {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.accountCard.emptyCard {
+  justify-content: center;
+  background: #f8f9fa;
+  border: 2px dashed #ddd;
+}
+
+.emptyMessage span {
+  color: #666;
+  font-size: 16px;
+}
+
+.bankBadge {
+  position: absolute;
+  top: 0;
+  left: 16px;
+  transform: translateY(-50%);
+  background: #ffd700;
+  color: #333;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.accountContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.bankInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bankLogo {
+  width: 48px;
+  height: 48px;
+}
+
+.logoCircle {
+  width: 48px;
+  height: 48px;
+  background: #6f4ef2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.bankDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bankName {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.accountNumber {
+  font-size: 14px;
+  color: #666;
+}
+
+.moreButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

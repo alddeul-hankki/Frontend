@@ -1,0 +1,58 @@
+.bankList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bankItem {
+  background: white;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bankItem:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.bankLogo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.bankInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bankName {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.bankDescription {
+  font-size: 13px;
+  color: #666;
+}
+
+.moreButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
