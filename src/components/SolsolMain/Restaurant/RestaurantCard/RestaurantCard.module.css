@@ -16,6 +16,13 @@
   height: 160px;
   background: #f8f9fa;
   position: relative;
+  overflow: hidden;
+}
+
+.restaurantImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .imagePlaceholder {
@@ -33,9 +40,8 @@
 }
 
 .imagePlaceholder span {
-  font-size: 24px;
+  font-size: 32px;
   color: #adb5bd;
-  font-weight: bold;
 }
 
 .restaurantInfo {
@@ -43,42 +49,50 @@
 }
 
 .restaurantName {
-  margin: 0 0 8px 0;
+  margin: 0 0 12px 0;
   font-size: 16px;
   font-weight: bold;
   color: #333;
+  line-height: 1.3;
 }
 
-.restaurantLocation {
-  margin: 0 0 4px 0;
-  font-size: 14px;
+.restaurantStats {
+  display: flex;
+  gap: 16px;
+  margin: 0 0 12px 0;
+  font-size: 13px;
   color: #666;
 }
 
-.restaurantDetails {
-  margin: 0 0 8px 0;
-  font-size: 12px;
-  color: #888;
+.reviewCount, .rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
-.restaurantDelivery {
-  margin: 0 0 8px 0;
+.reviewCount::before {
+  content: "💬";
   font-size: 12px;
+}
+
+.rating::before {
+  content: "👍";
+  font-size: 12px;
+}
+
+.deliveryInfo {
+  margin: 0;
+}
+
+.deliveryFee {
+  margin: 0 0 6px 0;
+  font-size: 13px;
   color: #007bff;
   font-weight: 500;
 }
 
-.restaurantReviews {
-  display: flex;
-  gap: 12px;
-  margin: 0 0 8px 0;
-  font-size: 12px;
-  color: #666;
-}
-
-.restaurantTargetAmount {
+.deliveryTime {
   margin: 0;
   font-size: 12px;
-  color: #ff6b35;
-  font-weight: 500;
+  color: #666;
 }

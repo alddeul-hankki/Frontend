@@ -1,0 +1,565 @@
+/* 전체 컨테이너 */
+.container {
+  max-width: 100%;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+/* 헤더 영역 */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: white;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e9ecef;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.backButton {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #495057;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.backButton:hover {
+  background-color: #f1f3f4;
+}
+
+.restaurantName {
+  font-size: 18px;
+  font-weight: 600;
+  color: #212529;
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+.shareButton {
+  background: none;
+  border: none;
+  color: #495057;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.shareButton:hover {
+  background-color: #f1f3f4;
+}
+
+/* 이미지 섹션 */
+.imageSection {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+/* 캐러셀 컨테이너 */
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.carouselTrack {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.35s ease;
+}
+
+.carouselSlide {
+  min-width: 100%;
+  height: 100%;
+}
+
+.carouselNavLeft,
+.carouselNavRight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.carouselNavLeft { left: 10px; }
+.carouselNavRight { right: 10px; }
+
+/* 1/n 인디케이터 */
+.carouselIndicator {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+}
+
+.indicatorNav {
+  background: rgba(0, 0, 0, 0);
+  color: #fff;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.indicatorNav:active {
+  transform: scale(0.95);
+}
+
+.indicatorText {
+  padding: 0 2px;
+}
+
+/* 기존 이미지 스타일 재사용 */
+.restaurantImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imageOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  padding: 20px;
+  color: white;
+}
+
+.ratingInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.rating {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffc107;
+}
+
+.reviewCount {
+  font-size: 14px;
+  color: #e9ecef;
+}
+
+/* 정보 섹션 */
+.infoSection {
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.basicInfo {
+  margin-bottom: 24px;
+}
+
+.basicInfo .restaurantName {
+  font-size: 24px;
+  font-weight: 700;
+  color: #212529;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.description {
+  color: #6c757d;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.categories {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.categoryTag {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* 배달 정보 */
+.deliveryInfo, .contactInfo {
+  border-top: 1px solid #e9ecef;
+  padding-top: 16px;
+  margin-bottom: 16px;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.infoLabel {
+  color: #6c757d;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.infoValue {
+  color: #212529;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* 메뉴 섹션 */
+.menuSection {
+  padding: 20px;
+  background-color: white;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.menuGroup {
+  margin-bottom: 30px;
+}
+
+.menuGroupTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+  border-bottom: 2px solid #ff6b35;
+  padding-bottom: 5px;
+}
+
+.menuGroupDescription {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.menuGrid {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.menuItem {
+  background: white;
+  border-bottom: 1px solid #e9ecef;
+  padding: 16px 20px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 80px;
+}
+
+.menuItem:hover {
+  background-color: #f8f9fa;
+}
+
+.menuItem.selected {
+  background-color: #fff3e0;
+  border-left: 4px solid #ff6b35;
+}
+
+.menuItem:last-child {
+  border-bottom: none;
+}
+
+.menuInfo {
+  flex: 1;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 60px;
+}
+
+.menuName {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+  line-height: 1.3;
+}
+
+.menuDescription {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 12px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+.menuPrice {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ff6b35;
+  margin-top: auto;
+}
+
+.menuActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.addToCartButton {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.addToCartButton:hover {
+  background-color: #218838;
+}
+
+.addToCartButton:active {
+  transform: scale(0.98);
+}
+
+.menuImage {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.menuImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.menuItem:hover .menuImage img {
+  transform: scale(1.05);
+}
+
+.popularBadge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #ff6b35;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.newBadge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #28a745;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.saleBadge {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  background: #dc3545;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* 로딩 및 에러 상태 */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.loadingSpinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #e9ecef;
+  border-top: 4px solid #ff6b35;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loadingContainer p {
+  font-size: 18px;
+  color: #666;
+  margin: 0;
+}
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f8f9fa;
+  padding: 20px;
+  text-align: center;
+}
+
+.errorContainer p {
+  font-size: 18px;
+  color: #dc3545;
+  margin-bottom: 20px;
+}
+
+.errorContainer button {
+  background-color: #ff6b35;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.errorContainer button:hover {
+  background-color: #e55a2b;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .menuItem {
+    flex-direction: row;
+    min-height: auto;
+    padding: 16px;
+    align-items: center;
+  }
+  
+  .menuImage {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .menuInfo {
+    padding: 0;
+    min-height: 50px;
+  }
+  
+  .header {
+    padding: 12px 16px;
+  }
+  
+  .infoSection, .menuSection, .selectedMenuDetail {
+    padding: 16px;
+  }
+  
+  .menuGrid {
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .carousel,
+  .imageSection {
+    height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-bottom: 100px;
+  }
+  
+  .menuImage {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .menuInfo {
+    padding: 0;
+    min-height: 45px;
+  }
+  
+  .menuName {
+    font-size: 16px;
+  }
+  
+  .menuDescription {
+    font-size: 13px;
+  }
+  
+  .addToCartButton {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .carousel,
+  .imageSection {
+    height: 200px;
+  }
+}
