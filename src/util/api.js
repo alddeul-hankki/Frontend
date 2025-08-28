@@ -45,6 +45,11 @@ export const get = async (endpoint, params = {}, apiClient = defaultApi) => {
     return response.data;
 };
 
+export const post = async (endpoint, body, apiClient = defaultApi) => {
+    const response = await apiClient.post(endpoint, body);
+    return response.data;
+};
+
 export const put = async (endpoint, body, apiClient = defaultApi) => {
     const response = await apiClient.put(endpoint, body);
     return response.data;
@@ -89,4 +94,16 @@ export const deleteFCMToken = async (token) => {
     } catch (error) {
         console.error('FCM 토큰 삭제 실패:', error);
     }
+};
+
+export default {
+  ddangyoApi,
+  solsolhanhankkiApi,
+  get,
+  post,
+  put,
+  patch,
+  del,
+  saveFCMToken,
+  deleteFCMToken,
 };
