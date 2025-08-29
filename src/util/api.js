@@ -9,8 +9,9 @@ const API_CONFIGS = {
             'Authorization': `Bearer ${import.meta.env.VITE_LOGIN_TOKEN}`
         }
     },
-    solsolhanhankki: {
-        baseURL: import.meta.env.VITE_API_SOLSOLHANHANKKI_URL,
+
+    solsolhanHankki: {
+        baseURL: import.meta.env.VITE_API_HANKKI_URL || '',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${import.meta.env.VITE_LOGIN_TOKEN}`
@@ -37,7 +38,7 @@ const defaultApi = createApiClient('ddangyo');
 
 // API 클라이언트 export
 export const ddangyoApi = defaultApi;
-export const solsolhanhankkiApi = createApiClient('solsolhanhankki');
+export const solsolhanHankkiApi = createApiClient('solsolhanHankki');
 
 // 기존 함수 호출 방식 그대로 유지
 export const get = async (endpoint, params = {}, apiClient = defaultApi) => {
@@ -65,45 +66,12 @@ export const del = async (endpoint, body = {}, apiClient = defaultApi) => {
     return response.data;
 };
 
-// FCM 토큰 함수
-export const saveFCMToken = async (token) => {
-    try {
-        const response = await fetch('/api/fcm/token', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                fcmToken: token,
-                deviceType: 'web',
-                timestamp: new Date().toISOString()
-            })
-        });
-        return await response.json();
-    } catch (error) {
-        console.error('FCM 토큰 저장 실패:', error);
-    }
-};
-
-export const deleteFCMToken = async (token) => {
-    try {
-        const response = await fetch('/api/fcm/token', {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ fcmToken: token })
-        });
-        return await response.json();
-    } catch (error) {
-        console.error('FCM 토큰 삭제 실패:', error);
-    }
-};
-
 export default {
   ddangyoApi,
-  solsolhanhankkiApi,
+  solsolhanHankkiApi,
   get,
   post,
   put,
   patch,
   del,
-  saveFCMToken,
-  deleteFCMToken,
 };
