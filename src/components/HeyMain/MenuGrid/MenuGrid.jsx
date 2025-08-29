@@ -101,25 +101,27 @@ const MenuGrid = ({ onClickItem }) => {
   };
 
   return (
-    <div className={styles.menuContainer}>
+    <div className={styles.menuGridOuter}>
       <div className={styles.menuTitle}>MY메뉴</div>
-      <div className={styles.menuGrid}>
-        {menuItems.map((item, index) => (
-          <div
-            key={index}
-            className={styles.menuItem}
-            onClick={() => onClickItem?.(item)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onClickItem?.(item); }}
-            style={{ cursor: 'pointer' }}
-          >
-            <div className={styles.menuIcon}>
-              {renderIcon(item.icon, item.id)}
+      <div className={styles.menuContainer}>
+        <div className={styles.menuGrid}>
+          {menuItems.map((item, index) => (
+            <div
+              key={index}
+              className={styles.menuItem}
+              onClick={() => onClickItem?.(item)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onClickItem?.(item); }}
+              style={{ cursor: 'pointer' }}
+            >
+              <div className={styles.menuIcon}>
+                {renderIcon(item.icon, item.id)}
+              </div>
+              <span className={styles.menuText}>{item.title}</span>
             </div>
-            <span className={styles.menuText}>{item.title}</span>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
