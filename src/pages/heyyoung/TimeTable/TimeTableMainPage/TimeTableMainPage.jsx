@@ -1,13 +1,11 @@
 import React, { useMemo } from "react";
 import styles from "./TimeTableMainPage.module.css";
-import PageHeader from "../../../../components/PageHeader/PageHeader";
 import TopBar from "../../../../components/TimeTable/TopBar/TopBar";
 import DayHeader from "../../../../components/TimeTable/DayHeader/DayHeader";
 import TimeGutter from "../../../../components/TimeTable/TimeGutter/TimeGutter";
 import LectureBlock from "../../../../components/TimeTable/LectureBlock/LectureBlock";
 
 function TimeTableMainPage() {
-  //TODO: api로 불러오기
   /** 데모 데이터: 분 단위 (09:00=540) */
   const lectures = useMemo(
     () => [
