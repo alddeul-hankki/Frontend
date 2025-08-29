@@ -1,0 +1,28 @@
+.lectureBlockAbs{
+  position: absolute;
+
+  width: calc(100% / var(--cols));
+  left: calc((var(--col) - 1) * 100% / var(--cols));
+
+  top: calc(var(--startH) * var(--hour-h));
+  height: calc(var(--durH) * var(--hour-h));
+
+  box-sizing: border-box;
+  padding: var(--event-gap);
+
+  border-radius: 0px;
+  color: #ffffff;
+  font-weight: 600;
+  background-clip: padding-box;
+  overflow: hidden;
+}
+
+.lectureBlockTitle{
+  font-size:var(--fs-lg);
+  line-height:1.2;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.lectureBlockProf{ margin-top:6px; font-size:var(--fs-sm); font-weight:400; opacity:.95; }
