@@ -6,6 +6,66 @@
   padding-bottom: 80px;
 }
 
+/* 그룹 주문 정보 */
+.groupOrderInfo {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.groupOrderHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.groupOrderBadge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.groupOrderTitle {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.groupOrderDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.groupOrderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.groupOrderRow:last-child {
+  border-bottom: none;
+}
+
+.groupOrderLabel {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.groupOrderValue {
+  font-size: 14px;
+  font-weight: 600;
+}
+
 /* 헤더 영역 */
 .header {
   position: sticky;

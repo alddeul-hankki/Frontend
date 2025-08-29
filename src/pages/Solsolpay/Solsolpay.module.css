@@ -1,0 +1,65 @@
+.wrapper {
+  display: block;
+  padding: clamp(10px, 2.5vw, 16px);
+}
+
+.card {
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  background: #fff;
+  overflow: hidden;
+}
+
+.header { padding: clamp(10px, 2.8vw, 16px); border-bottom: 1px solid #eee; }
+.brandRow { display:flex; align-items:center; gap:8px; }
+.badge { font-size: clamp(11px, 2.5vw, 13px); color:#666; border:1px solid #eee; border-radius:12px; padding:2px 6px; }
+.store { margin:0; font-size: clamp(15px, 4vw, 18px); }
+
+.section { padding: clamp(10px, 2.8vw, 16px); border-bottom:1px solid #f4f4f4; }
+.sectionTitle { font-size: clamp(11px, 2.8vw, 13px); color:#666; margin-bottom:8px; }
+.selectRow { display:flex; }
+.select { flex:1; height: 40px; border:1px solid #e5e5e5; border-radius:8px; padding:0 12px; background:#fff; font-size: clamp(13px, 3.2vw, 15px); }
+.selectButton { flex:1; height:40px; border:1px solid #e5e5e5; border-radius:8px; padding:0 12px; background:#fff; font-size: clamp(13px, 3.2vw, 15px); display:flex; align-items:center; justify-content:space-between; cursor:pointer; }
+.placeholder { color:#9aa0a6; }
+
+.couponSection { padding: clamp(10px, 2.8vw, 16px); border-bottom:1px solid #f4f4f4; }
+.couponBox { height: clamp(48px, 12vw, 64px); border-radius:10px; background:repeating-linear-gradient(45deg,#eee,#eee 12px,#f8f8f8 12px,#f8f8f8 24px); display:flex; align-items:center; justify-content:center; color:#666; }
+
+.payRow { display:flex; align-items:center; gap:8px; font-size: clamp(13px, 3.2vw, 15px); }
+
+.summary { padding: clamp(10px, 2.8vw, 16px); }
+.summaryRow { display:flex; align-items:center; gap:6px; justify-content:space-between; font-size: clamp(12px, 3vw, 14px); margin:6px 0; }
+.totalRow { display:flex; align-items:center; justify-content:space-between; font-weight:700; margin:10px 0; font-size: clamp(14px, 3.6vw, 16px); }
+.divider { border:none; border-top:1px solid #eee; margin:8px 0; }
+.dim { color:#b5b5b5; text-decoration:line-through; margin-left:auto; }
+.red { color:#ff4d4f; }
+.green { color:#06c167; }
+.remain { font-size: clamp(11px, 2.8vw, 13px); color:#666; }
+
+.footer { position: sticky; bottom: 0; background:#fff; padding: 10px clamp(10px, 2.8vw, 16px) calc(10px + env(safe-area-inset-bottom)); border-top:1px solid #eee; }
+.cta { width:100%; height: clamp(44px, 11vw, 52px); background:#ff6a2a; color:#fff; border:none; border-radius:10px; font-weight:700; font-size: clamp(14px, 3.6vw, 16px); cursor: pointer; }
+.cta:disabled, .cta.disabled { background:#ccc; color:#666; cursor: not-allowed; }
+
+@media (min-width: 480px) {
+  .wrapper { padding: clamp(12px, 2.2vw, 20px); }
+}
+
+/* Modal styles */
+.modalOverlay { position: fixed; inset: 0; background: rgba(0,0,0,.35); display:flex; align-items:flex-end; justify-content:center; z-index: 1000; }
+.sheet { width: 100%; max-width: 520px; background:#fff; border-top-left-radius:16px; border-top-right-radius:16px; overflow:hidden; box-shadow: 0 -6px 24px rgba(0,0,0,.18); transform: translateY(100%); animation: slideUp .25s ease-out forwards; height: 70vh; display:flex; flex-direction:column; }
+.modalHeader { display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border-bottom:1px solid #eee; font-weight:700; }
+.modalClose { border:none; background:transparent; font-size:20px; line-height:1; cursor:pointer; }
+.mapContainer { width: 100%; flex: 1 1 auto; }
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0%); }
+}
+
+/* Time list */
+.timeList { padding: 10px 12px; overflow: auto; height: calc(70vh - 52px); display:grid; grid-template-columns: 1fr; gap: 8px; }
+.timeBtn { height: 44px; border:1px solid #e5e5e5; border-radius:8px; background:#fff; }
+.timeBtn:disabled { opacity:.4; cursor:not-allowed; }
+
+

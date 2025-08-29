@@ -1,29 +1,17 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import WaitingRoomCard from '../WaitingRoomCard/WaitingRoomCard';
 import styles from './WaitingRoomList.module.css';
+import { getGroupList } from '../../../../util/solsolApi';
 
-const allWaitingRooms = [
-  { id: 1, name: "신한치킨 강남점", deliveryAddress: "도서관 앞", orderDeadline: "11:30", eta: "12:10", amountToTarget: "5,000" },
-  { id: 2, name: "교촌치킨 역삼점", deliveryAddress: "학생회관 입구", orderDeadline: "12:00", eta: "12:40", amountToTarget: "8,000" },
-  { id: 3, name: "BHC 선릉점", deliveryAddress: "도서관 앞", orderDeadline: "11:45", eta: "12:25", amountToTarget: "3,500" },
-  { id: 4, name: "네네치킨 삼성점", deliveryAddress: "도서관 앞", orderDeadline: "12:15", eta: "12:55", amountToTarget: "6,000" },
-  { id: 5, name: "굽네치킨 강남역점", deliveryAddress: "도서관 앞", orderDeadline: "11:50", eta: "12:30", amountToTarget: "4,500" },
-  { id: 6, name: "호식이두마리치킨 신논현점", deliveryAddress: "도서관 앞", orderDeadline: "12:05", eta: "12:45", amountToTarget: "7,500" },
-  { id: 7, name: "BBQ 청담점", deliveryAddress: "도서관 앞", orderDeadline: "12:20", eta: "13:00", amountToTarget: "5,500" },
-  { id: 8, name: "페리카나 압구정점", deliveryAddress: "도서관 앞", orderDeadline: "11:55", eta: "12:35", amountToTarget: "6,500" },
-  { id: 9, name: "멕시카나 논현점", deliveryAddress: "도서관 앞", orderDeadline: "12:10", eta: "12:50", amountToTarget: "2,500" },
-  { id: 10, name: "처갓집 양재점", deliveryAddress: "도서관 앞", orderDeadline: "12:30", eta: "13:10", amountToTarget: "9,000" },
-];
-
-const pageSize = 3// 한 번에 로드할 개수
+const pageSize = 3; // 한 번에 로드할 개수
 
 const WaitingRoomList = () => {
   const [waitingRooms, setWaitingRooms] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const containerRef = useRef(null);
-  const currentItemsRef = useRef(0); // 현재 아이템 수를 추적하기 위한 ref
-  const isInitializedRef = useRef(false); // 초기화 여부를 추적하는 ref
+  const currentItemsRef = useRef(0); 
+  const isInitializedRef = useRef(false); 
 
   // 초기 데이터 로드
   useEffect(() => {
@@ -34,30 +22,54 @@ const WaitingRoomList = () => {
   }, []);
 
   // 추가 데이터 로드 함수 (가로 스크롤)
-  const loadMoreData = useCallback(() => {
+  const loadMoreData = useCallback(async () => {
     if (loading || !hasMore) return;
 
     setLoading(true);
-    
-    // 실제 API 호출을 시뮬레이션
-    setTimeout(() => {
-      const currentPage = Math.floor(currentItemsRef.current / pageSize);
-      const start = currentPage * pageSize;
-      const end = start + pageSize;
-      const newData = allWaitingRooms.slice(start, end);
+    try {
+      const requestBody = {
+        campusId: 1,
+      };
 
-      setWaitingRooms(prev => {
-        const updated = [...prev, ...newData];
-        currentItemsRef.current = updated.length; // ref 업데이트
-        return updated;
-      });
-      setLoading(false);
+      const response = await getGroupList(requestBody);
+      console.log('API Response:', response);
 
-      if(end >= allWaitingRooms.length) {
+      if (response && Array.isArray(response)) {
+        // 만료된 그룹 제거 (deadlineAt이 현재 시각 이전이면 제외)
+        const nowMs = Date.now();
+        const filtered = response.filter((room) => {
+          if (room.deadlineAt) {
+            const d = new Date(room.deadlineAt).getTime();
+            return d > nowMs; // 아직 마감 전만 노출
+          }
+          return true; // deadlineAt 없으면 일단 노출
+        });
+
+        const currentPage = Math.floor(currentItemsRef.current / pageSize);
+        const start = currentPage * pageSize;
+        const end = start + pageSize;
+        const newData = filtered.slice(start, end);
+
+        setWaitingRooms(prev => {
+          const updated = [...prev, ...newData];
+          currentItemsRef.current = updated.length; // ref 업데이트
+          return updated;
+        });
+
+        if (end >= filtered.length) {
+          setHasMore(false);
+        }
+      } else {
+        console.error('Invalid API response format:', response);
         setHasMore(false);
       }
-    }, 500);
-  }, [loading, hasMore, pageSize]);
+    } catch (error) {
+      console.error('Error loading data:', error);
+      setHasMore(false);
+    } finally {
+      setLoading(false);
+    }
+  }, [loading, hasMore]);
 
   // 스크롤 이벤트 핸들러
   const handleScroll = useCallback(()=>{
@@ -83,8 +95,8 @@ const WaitingRoomList = () => {
       <h3 className={styles.sectionSubtitle}>너만 땡기면 바로 주문</h3>
       <div className={styles.horizontalScrollContainer} ref={containerRef}>
         <div className={styles.horizontalScrollContent}>
-          {waitingRooms.map((room) => (
-            <div key={room.id} className={styles.roomCardWrapper}>
+          {waitingRooms.map((room, index) => (
+            <div key={room.groupId || index} className={styles.roomCardWrapper}>
               <WaitingRoomCard room={room} />
             </div>
           ))}
