@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getMessaging } from "firebase/messaging";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
+  apiKey: "AIzaSyC4c9XCWJm21xPz-ZClsJbcql8A3KP58bo",
+  authDomain: "solsolhan-hankki-v2.firebaseapp.com",
+  projectId: "solsolhan-hankki-v2",
+  storageBucket: "solsolhan-hankki-v2.firebasestorage.app",
+  messagingSenderId: "719329564465",
+  appId: "1:719329564465:web:5fc279dbc864f2f4b8c210",
+  measurementId: "G-BQNTZML441",
 };
 
 const app = initializeApp(firebaseConfig);
