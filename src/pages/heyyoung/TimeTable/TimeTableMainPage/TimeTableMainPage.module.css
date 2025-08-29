@@ -6,8 +6,8 @@
 
   --event-gap: 8px;
 
-  --fs-lg: clamp(14px, 1.6vw, 18px);
-  --fs-md: clamp(13px, 1.4vw, 16px);
+  --fs-lg: clamp(13px, 1.6vw, 18px);
+  --fs-md: clamp(13px, 1.4vw, 18px);
   --fs-sm: clamp(12px, 1.2vw, 15px);
 
   --line: #e8edf6;
