@@ -1,7 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HeyMainPage from '../pages/heyyoung/Main/HeyMainPage';
-import WalletMainPage from '../pages/heyyoung/Wallet/WalletMainPage/WalletMainPage';
 import AccountManagePage from '../pages/heyyoung/Account/AccountManagePage/AccountManagePage'
 import AccountConnectPage from '../pages/heyyoung/Account/AccountConnectPage/AccountConnectPage'
 import VerifyTransactionPage from '../pages/external/VerifyTransactionPage/VerifyTransactionPage';
@@ -12,12 +11,12 @@ import MenuDetail from '../pages/MenuDetail/MenuDetail';
 import Solsolpay from '../pages/SolsolPay/Solsolpay';
 import TimeTableMainPage from '../pages/heyyoung/TimeTable/TimeTableMainPage/TimeTableMainPage';
 
+import PayMoneyDashboard from "../pages/heyyoung/PayMoney/PayMoneyDashboard";
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<HeyMainPage />} />
       <Route path="/solsol" element={<Solsolhanhankki />} />
-      <Route path="/pay" element={<WalletMainPage />} />
       <Route path="/account-manage" element={<AccountManagePage />} />
       <Route path="/account-connect" element={<AccountConnectPage />} />
       <Route path='/verify-transaction' element={<VerifyTransactionPage />} />
@@ -26,6 +25,8 @@ const AppRoutes = () => {
       <Route path="/menus/:menuId" element={<MenuDetail />} />
       <Route path="/solsolpay" element={<Solsolpay />} />
       <Route path="/timetable" element={<TimeTableMainPage/>} />
+
+      <Route path="/paymoney" element={<PayMoneyDashboard />} />
     </Routes>
   );
 };
