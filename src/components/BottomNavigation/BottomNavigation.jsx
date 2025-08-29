@@ -23,7 +23,7 @@ const BottomNavigation = () => {
     
     switch (item.label) {
       case '페이':
-        navigate('/pay');
+        navigate('/paymoney');
         break;
       default:
         navigate('/');

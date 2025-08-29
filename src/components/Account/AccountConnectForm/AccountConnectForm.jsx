@@ -42,7 +42,7 @@ const AccountConnectForm = ({ account }) => {
   }, []);
 
   const handleCompleteConnection = () => {
-    navigate("/pay");
+    navigate("/paymoney");
   };
 
   const isAllCompleted = completedSteps[1] && completedSteps[2] && completedSteps[3];
