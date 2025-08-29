@@ -22,6 +22,8 @@ const HeyMainPage = () => {
       <Header />
       <div className={styles.content}>
         <UserCard />
+      </div>
+      <div className={styles.menuGridSpacer}>
         <MenuGrid onClickItem={handleMenuClick} />
       </div>
       <BottomNavigation />

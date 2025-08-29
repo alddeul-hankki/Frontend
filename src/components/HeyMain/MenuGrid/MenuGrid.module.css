@@ -1,22 +1,28 @@
+.menuGridOuter {
+  padding-bottom: 100px; /* 네비게이션 바 공간 확보 */
+  background: rgb(245, 245, 245);
+}
+
 .menuContainer {
   background: white;
   border-radius: 16px;
   padding: 20px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  margin: 20px 20px 0px 20px;
 }
 
 .menuTitle {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
   color: #333;
-  margin-bottom: 20px;
+  padding: 20px 0px 0px 33px;
 }
 
 .menuGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px 5%;
-  
+  padding: 0 20px; /* 좌우 패딩 20px */
 }
 
 .menuItem {
