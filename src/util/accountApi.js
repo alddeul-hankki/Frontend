@@ -4,9 +4,7 @@ const baseURL = "http://localhost:8080";
 
 export const getAccounts = async (email) => {
   try {
-    const response = await api.get(baseURL + '/api/accounts', {
-      params: { email }
-    });
+    const response = await api.get(baseURL + '/api/accounts', { email });
     return response.data;
   } catch (error) {
     console.error('계좌 조회 실패:', error);
@@ -17,7 +15,7 @@ export const getAccounts = async (email) => {
 export const createAccount = async (email) => {
   try {
     const response = await api.post(baseURL + '/api/accounts', {email : email});
-    return response.data;
+    return response;
   } catch (error) {
     console.error('계좌 조회 실패:', error);
     throw error;
@@ -27,7 +25,7 @@ export const createAccount = async (email) => {
 export const getAccountTransactions = async (transactionRequest) => {
   try {
     const response = await api.post(baseURL + '/api/accounts/transactions', transactionRequest);
-    return response.data;
+    return response;
   } catch (error) {
     console.error('거래내역 조회 실패:', error);
     throw error;
