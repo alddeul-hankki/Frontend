@@ -40,11 +40,11 @@ const AccountSummary = ({ bankName, accountNumber, balance, availableBalance }) 
 
       <div className={styles.balanceSection}>
         <div className={styles.currentBalance}>
-          <span className={styles.balanceAmount}>{balance}원</span>
+          <span className={styles.balanceAmount}>{balance.toLocaleString()}원</span>
         </div>
         <div className={styles.availableBalance}>
           <span className={styles.availableLabel}>출금가능금액</span>
-          <span className={styles.availableAmount}>{availableBalance}원</span>
+          <span className={styles.availableAmount}>{availableBalance.toLocaleString()}원</span>
         </div>
       </div>
 

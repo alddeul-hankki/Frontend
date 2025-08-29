@@ -21,6 +21,7 @@ import PayMoneyRefundPage from "../pages/heyyoung/PayMoney/Refund/PayMoneyRefund
 import PayMoneyRefundConfirmPage from "../pages/heyyoung/PayMoney/Refund/PayMoneyRefundConfirmPage.jsx";
 import PayMoneyRefundSuccessPage from "../pages/heyyoung/PayMoney/Refund/PayMoneyRefundSuccessPage.jsx";
 import PayMoneyRefundFailPage from "../pages/heyyoung/PayMoney/Refund/PayMoneyRefundFailPage.jsx";
+import PaymentPage from '../pages/heyyoung/Payment/PaymentPage';
 
 const AppRoutes = () => {
   return (
@@ -30,6 +31,7 @@ const AppRoutes = () => {
       <Route path="/account-manage" element={<AccountManagePage />} />
       <Route path="/account-connect" element={<AccountConnectPage />} />
       <Route path='/verify-transaction' element={<VerifyTransactionPage />} />
+      <Route path="/payment" element={<PaymentPage />} /> 
       <Route path="/ddangyo-mock" element={<DdangyoMock />} />
       <Route path="/restaurants/:id" element={<RestaurantDetail />} />
       <Route path="/menus/:menuId" element={<MenuDetail />} />

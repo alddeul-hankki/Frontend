@@ -22,7 +22,6 @@ const BankSelectForm = ({ isOpen, account }) => {
       const email = localStorage.getItem('userEmail');
       const accountId = account.accountId;
       const result = await verifyAccount(email, accountId);
-      console.log('검증 결과:', result);
       
       if (result.status === 200) {
         setIsTransitioning(true);

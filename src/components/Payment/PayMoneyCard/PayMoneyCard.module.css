@@ -1,0 +1,62 @@
+.paymentCard {
+  margin: 20px;
+  margin-top: 30px;
+  background-color: #c8c8ff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cardHeader {
+  margin-bottom: 16px;
+}
+
+.payLogo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.payIcon {
+  font-size: 20px;
+}
+
+.payText {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.balanceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.balanceLabel {
+  font-size: 16px;
+  color: #000;
+}
+
+.balanceAmount {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+}
+
+.sufficientBalance {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+.checkIcon {
+  font-size: 16px;
+}

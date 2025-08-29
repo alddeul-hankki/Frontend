@@ -8,7 +8,7 @@ export const verifyAccount = async (email, accountId) => {
       email,
       accountId
     });
-    return response.data;
+    return response;
   } catch (error) {
     console.error('계좌 검증 실패:', error);
     throw error;
@@ -22,7 +22,7 @@ export const confirmAccount = async (email, accountId, code) => {
       accountId,
       code
     });
-    return response.data;
+    return response;
   } catch (error) {
     console.error('계좌 검증 실패:', error);
     throw error;
