@@ -34,12 +34,6 @@
 
 .gridWrap{ display:grid; grid-template-columns:var(--gutter-w) 1fr; gap:0; padding:0 var(--pad-x) var(--pad-x) var(--pad-x); }
 
-.timeLabel{
-  display:flex; align-items:flex-start; justify-content:center;
-  padding-top:2px; font-size:var(--fs-lg); color:#8d9bb0;
-  border-top:1px solid var(--line-soft);
-}
-
 /* 본 그리드 컨테이너 */
 .gridBody{
   position:relative;

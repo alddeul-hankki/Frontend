@@ -9,3 +9,9 @@
   border-radius:12px 0 0 12px;
   overflow:hidden;
 }
+
+.timeLabel{
+  display:flex; align-items:flex-start; justify-content:center;
+  padding-top:2px; font-size:var(--fs-lg); color:#8d9bb0;
+  border-top:1px solid var(--line-soft);
+}
