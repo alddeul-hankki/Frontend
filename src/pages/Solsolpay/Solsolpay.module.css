@@ -38,7 +38,8 @@
 .remain { font-size: clamp(11px, 2.8vw, 13px); color:#666; }
 
 .footer { position: sticky; bottom: 0; background:#fff; padding: 10px clamp(10px, 2.8vw, 16px) calc(10px + env(safe-area-inset-bottom)); border-top:1px solid #eee; }
-.cta { width:100%; height: clamp(44px, 11vw, 52px); background:#ff6a2a; color:#fff; border:none; border-radius:10px; font-weight:700; font-size: clamp(14px, 3.6vw, 16px); }
+.cta { width:100%; height: clamp(44px, 11vw, 52px); background:#ff6a2a; color:#fff; border:none; border-radius:10px; font-weight:700; font-size: clamp(14px, 3.6vw, 16px); cursor: pointer; }
+.cta:disabled, .cta.disabled { background:#ccc; color:#666; cursor: not-allowed; }
 
 @media (min-width: 480px) {
   .wrapper { padding: clamp(12px, 2.2vw, 20px); }

@@ -16,7 +16,7 @@ const API_CONFIGS = {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${import.meta.env.VITE_LOGIN_TOKEN}`
         }
-    }
+    }    
 };
 
 // API 클라이언트 생성 함수

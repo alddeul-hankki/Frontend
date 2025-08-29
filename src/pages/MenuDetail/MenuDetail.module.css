@@ -95,8 +95,6 @@
 /* 메뉴 정보 */
 .menuInfo {
   background-color: white;
-  margin: 16px;
-  border-radius: 12px;
   padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -380,8 +378,6 @@
   }
   
   .menuInfo {
-    margin: 12px;
-    padding: 16px;
   }
   
   .menuName {
@@ -415,8 +411,6 @@
   }
   
   .menuInfo {
-    margin: 8px;
-    padding: 12px;
   }
   
   .addToCartButton {
@@ -427,8 +421,6 @@
 
 .optionSection {
   background: white;
-  margin: 16px;
-  border-radius: 12px;
   padding: 12px 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }

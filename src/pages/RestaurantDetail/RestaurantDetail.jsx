@@ -1,11 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { getRestaurantDetail, getRestaurantInfo } from '../../util/ddangApi';
 import styles from './RestaurantDetail.module.css';
 
 const RestaurantDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  console.log('🟠 [RestaurantDetail] 컴포넌트 마운트');
+  console.log('📍 [RestaurantDetail] location.state:', location.state);
+  console.log('📍 [RestaurantDetail] isGroupOrder:', location.state?.isGroupOrder);
+  console.log('📍 [RestaurantDetail] groupOrderInfo:', location.state?.groupOrderInfo);
+  
+  // 그룹 주문 정보 (WaitingRoomCard에서 전달받은 정보)
+  const groupOrderInfo = location.state?.isGroupOrder ? location.state : null;
+  
+  console.log('📍 [RestaurantDetail] groupOrderInfo 최종:', groupOrderInfo);
+  
   const [restaurant, setRestaurant] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -162,7 +174,24 @@ const RestaurantDetail = () => {
   };
 
   const handleMenuClick = (menu) => {
-    navigate(`/menus/${menu.id}`, { state: { menu, patstoNo: id } });
+    console.log('🔵 [RestaurantDetail] 메뉴 클릭:', menu.name);
+    console.log('📍 [RestaurantDetail] groupOrderInfo 존재:', !!groupOrderInfo);
+    
+    const state = { menu, patstoNo: id };
+    if (groupOrderInfo) {
+      const inner = groupOrderInfo.groupOrderInfo || {};
+      const [rangeStart, rangeEnd] = (groupOrderInfo.timeRange || '').split('-');
+      const normalized = {
+        pickupZoneId: groupOrderInfo.pickupZoneId,
+        pickupZoneName: groupOrderInfo.pickupZoneName,
+        timeRange: groupOrderInfo.timeRange,
+        deadlineTime: inner.deadlineTime || rangeStart || '',
+        pickupTime: inner.pickupTime || rangeEnd || ''
+      };
+      state.groupOrderInfo = normalized;
+      console.log('📦 [RestaurantDetail] MenuDetail로 전달될 정규화 groupOrderInfo:', normalized);
+    }
+    navigate(`/menus/${menu.id}`, { state });
   };
 
   const handleRemoveFromCart = (index) => {
@@ -287,6 +316,28 @@ const RestaurantDetail = () => {
       </div>
 
       <div className={styles.infoSection}>
+        {groupOrderInfo && (
+          <div className={styles.groupOrderInfo}>
+            <div className={styles.groupOrderHeader}>
+              <span className={styles.groupOrderBadge}>그룹 주문</span>
+              <span className={styles.groupOrderTitle}>참여 중인 그룹</span>
+            </div>
+            <div className={styles.groupOrderDetails}>
+              <div className={styles.groupOrderRow}>
+                <span className={styles.groupOrderLabel}>주문 마감</span>
+                <span className={styles.groupOrderValue}>{(groupOrderInfo.timeRange || '').split('-')[0]}</span>
+              </div>
+              <div className={styles.groupOrderRow}>
+                <span className={styles.groupOrderLabel}>픽업 시간</span>
+                <span className={styles.groupOrderValue}>{(groupOrderInfo.timeRange || '').split('-')[1]}</span>
+              </div>
+              <div className={styles.groupOrderRow}>
+                <span className={styles.groupOrderLabel}>픽업 장소</span>
+                <span className={styles.groupOrderValue}>{groupOrderInfo.pickupZoneName}</span>
+              </div>
+            </div>
+          </div>
+        )}
         <div className={styles.basicInfo}>
           <h2 className={styles.restaurantName}>{restaurant.name}</h2>
           <p className={styles.description}>{restaurant.description}</p>

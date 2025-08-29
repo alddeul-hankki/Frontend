@@ -4,8 +4,14 @@ import MenuGrid from '../../../components/HeyMain/MenuGrid/MenuGrid';
 import BottomNavigation from '../../../components/BottomNavigation/BottomNavigation';
 import { useNavigate } from 'react-router-dom';
 import styles from './HeyMainPage.module.css'
+import { useEffect } from 'react';
 
 const HeyMainPage = () => {
+
+  useEffect(() => {
+    localStorage.setItem('userId', '1');
+  }, []);
+
   const navigate = useNavigate();
   const handleMenuClick = (item) => {
     if (item.id === 'solsolhanhankki') navigate('/solsol');

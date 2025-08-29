@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { getMenuOptions } from '../../util/ddangApi';
+import { addToCartAndNavigate, createOrderFromMenu } from '../../util/orderUtils';
 import styles from './MenuDetail.module.css';
 
 const OptionGroup = ({ group, selectedOptionIds, onToggleOption }) => {
@@ -39,7 +40,7 @@ const MenuDetail = () => {
   const { menuId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const { menu: passedMenu, patstoNo: passedPatstoNo } = location.state || {};
+  const { menu: passedMenu, patstoNo: passedPatstoNo, groupOrderInfo } = location.state || {};
 
   const [patstoNo, setPatstoNo] = useState(passedPatstoNo || '');
   const [menu, setMenu] = useState(passedMenu || null);
@@ -168,29 +169,44 @@ const MenuDetail = () => {
   };
 
   const handleAddToCart = () => {
+    console.log('🛒 주문담기 버튼 클릭');
+    console.log('📍 menu:', menu);
+    console.log('📍 patstoNo:', patstoNo);
+    console.log('📍 quantity:', quantity);
+    
     const selectedOptions = [];
     optionGroups.forEach((g) => {
       g.options.forEach((o) => {
         if (selectedOptionIds.has(o.id)) selectedOptions.push(o);
       });
     });
+    
+    console.log('📍 selectedOptions:', selectedOptions);
 
-    const order = {
-      patstoNo,
-      menuId,
-      menuName: menu?.name,
-      basePrice,
-      quantity,
-      options: selectedOptions,
-      optionsTotal,
-      totalPrice,
-      user: {
-        id: 'demo-user-id',
-        name: '홍길동'
-      }
-    };
-    console.log('담기 주문 객체:', order);
-    navigate(-1);
+    // 주문 데이터 생성
+    const orderData = createOrderFromMenu(
+      menu, 
+      patstoNo, 
+      quantity, 
+      selectedOptions
+    );
+    
+    // 그룹 주문 정보가 있으면 추가
+    if (location.state?.groupOrderInfo) {
+      const g = location.state.groupOrderInfo;
+      orderData.groupOrderInfo = {
+        pickupZoneId: g.pickupZoneId,
+        pickupZoneName: g.pickupZoneName,
+        deadlineTime: g.deadlineTime || (g.timeRange || '').split('-')[0] || '',
+        pickupTime: g.pickupTime || (g.timeRange || '').split('-')[1] || ''
+      };
+      console.log('📦 groupOrderInfo 포함하여 Solsolpay로 전달:', orderData.groupOrderInfo);
+    }
+    
+    console.log('✅ 생성된 주문 데이터:', orderData);
+
+    // Solsolpay 페이지로 이동
+    addToCartAndNavigate(navigate, orderData);
   };
 
   if (isLoading) {

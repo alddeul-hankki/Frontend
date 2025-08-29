@@ -1,3 +1,5 @@
+import { ddangyoApi } from './api';
+
 /**
  * 가게 목록 조회 (POST 요청)
  * @param {Object} requestBody - 요청 body 객체
