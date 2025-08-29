@@ -4,7 +4,7 @@ import styles from './MenuGrid.module.css';
 const MenuGrid = () => {
   const menuItems = [
     { icon: '📋', title: '출결 신청내역', id: 'attendance' },
-    { icon: '📅', title: '일정관리', id: 'schedule' },
+    { icon: '📅', title: '시간표', id: 'timetable' },
     { icon: '🎓', title: '성적 조회', id: 'grades' },
     { icon: '📚', title: '수강 신청', id: 'registration' },
     { icon: '🏠', title: '주거 신청', id: 'housing' },
@@ -25,7 +25,7 @@ const MenuGrid = () => {
           <path d="M9 12l2 2 4-4" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       ),
-      'schedule': (
+      'timetable': (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="#666" strokeWidth="2"/>
           <line x1="16" y1="2" x2="16" y2="6" stroke="#666" strokeWidth="2" strokeLinecap="round"/>
