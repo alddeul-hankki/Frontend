@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './MenuGrid.module.css';
 
-const MenuGrid = () => {
+const MenuGrid = ({ onClickItem }) => {
   const menuItems = [
     { icon: '📋', title: '출결 신청내역', id: 'attendance' },
     { icon: '📅', title: '일정관리', id: 'schedule' },
@@ -14,7 +14,7 @@ const MenuGrid = () => {
     { icon: '💳', title: '학생증 재발급', id: 'card' },
     { icon: '🏫', title: '시설물 관리', id: 'facility' },
     { icon: '💰', title: '학습관리', id: 'study' },
-    { icon: '🍽️', title: '식당정보', id: 'dining' }
+    { icon: '🍽️', title: '쏠쏠한 한끼', id: 'solsolhanhankki' }
   ];
 
   const renderIcon = (iconType, id) => {
@@ -86,7 +86,7 @@ const MenuGrid = () => {
           <polyline points="12,6 12,12 16,14" stroke="#666" strokeWidth="2"/>
         </svg>
       ),
-      'dining': (
+      'solsolhanhankki': (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M18 8h1a4 4 0 0 1 0 8h-1" stroke="#666" strokeWidth="2"/>
           <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" stroke="#666" strokeWidth="2"/>
@@ -105,7 +105,15 @@ const MenuGrid = () => {
       <div className={styles.menuTitle}>MY메뉴</div>
       <div className={styles.menuGrid}>
         {menuItems.map((item, index) => (
-          <div key={index} className={styles.menuItem}>
+          <div
+            key={index}
+            className={styles.menuItem}
+            onClick={() => onClickItem?.(item)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onClickItem?.(item); }}
+            style={{ cursor: 'pointer' }}
+          >
             <div className={styles.menuIcon}>
               {renderIcon(item.icon, item.id)}
             </div>
