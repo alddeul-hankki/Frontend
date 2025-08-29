@@ -42,6 +42,8 @@ function App() {
     '/paymoney': '',
     '/paymoney/topup': '충전하기',
     '/paymoney/topup/confirm': '충전하기',
+    '/paymoney/refund': '환불하기',
+    '/paymoney/refund/confirm': '환불하기',
     '/solsolpay': '주문 결제',
     '/timetable': '강의 시간표',
   };

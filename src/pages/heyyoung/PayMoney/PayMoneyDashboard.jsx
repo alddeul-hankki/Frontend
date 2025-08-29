@@ -2,12 +2,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  Menu,
   ChevronRight,
   CreditCard,
   QrCode,
   Send,
   MoreHorizontal,
+  RotateCcw
 } from "lucide-react";
 import styles from "./PayMoneyDashboard.module.css";
 import { inquirePayMoney } from "../../../util/paymoneyApi";
@@ -54,7 +54,7 @@ function SectionTabs() {
   );
 }
 
-function ActionRail({ onTopUpClick }) {
+function ActionRail({ onTopUpClick, onRefundClick }) {
   const Item = ({ Icon, label, onClick }) => (
     <button className={styles.railItem} onClick={onClick}>
       <Icon size={16} className={styles.railIcon} />
@@ -66,13 +66,12 @@ function ActionRail({ onTopUpClick }) {
       <Item Icon={CreditCard} label={"터치\n결제"} />
       <Item Icon={QrCode} label={"QR·\n바코드"} />
       <Item Icon={Send} label="충전" onClick={onTopUpClick} />
-      <Item Icon={MoreHorizontal} label="더보기" />
+      <Item Icon={RotateCcw} label="환불" onClick={onRefundClick} />
     </aside>
   );
 }
 
-// JS: props 타입 제거
-function PayWalletCard({ logoSrc, onTopUpClick, onAccountManageClick, balance = 0 }) {
+function PayWalletCard({ logoSrc, onTopUpClick, onRefundClick, onAccountManageClick, balance = 0 }) {
   return (
     <div className={styles.walletRow}>
       <div className={styles.verticalLabel}></div>
@@ -97,7 +96,7 @@ function PayWalletCard({ logoSrc, onTopUpClick, onAccountManageClick, balance = 
         <div className={styles.usageLabel}>8월 이용금액</div>
         <div className={styles.usageValue}>400,000원</div>
       </div>
-      <ActionRail onTopUpClick={onTopUpClick} />
+      <ActionRail onTopUpClick={ onTopUpClick } onRefundClick={ onRefundClick }/>
     </div>
   );
 }
@@ -141,9 +140,6 @@ export default function PayMoneyDashboard() {
     <div className={styles.container}>
       <div className={styles.topBar}>
         <div className={styles.leftTop}>
-          <button className={styles.iconBtn}>
-            <Menu size={20} />
-          </button>
           <h1 className={styles.title}>쏠쏠한Pay머니</h1>
         </div>
       </div>
@@ -169,6 +165,7 @@ export default function PayMoneyDashboard() {
           logoSrc="src/assets/solsolhancard.png"
           balance={balance}
           onTopUpClick={() => navigate("/paymoney/topup")}
+          onRefundClick={() => navigate("/paymoney/refund")}
           onAccountManageClick={() => navigate("/account-manage")}
         />
       </div>

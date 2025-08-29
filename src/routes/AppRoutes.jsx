@@ -12,10 +12,15 @@ import Solsolpay from '../pages/SolsolPay/Solsolpay';
 import TimeTableMainPage from '../pages/heyyoung/TimeTable/TimeTableMainPage/TimeTableMainPage';
 
 import PayMoneyDashboard from "../pages/heyyoung/PayMoney/PayMoneyDashboard";
-import PayMoneyTopUpPage from '../pages/heyyoung/PayMoney/PayMoneyTopUpPage';
-import PayMoneyTopUpConfirmPage from '../pages/heyyoung/PayMoney/PayMoneyTopUpConfirmPage';
-import PayMoneyTransactionSuccessPage from '../pages/heyyoung/PayMoney/PayMoneyTransactionSuccessPage';
-import PayMoneyTransactionFailPage from '../pages/heyyoung/PayMoney/PayMoneyTransactionFailPage';
+import PayMoneyTopUpPage from "../pages/heyyoung/PayMoney/TopUp/PayMoneyTopUpPage.jsx";
+import PayMoneyTopUpConfirmPage from "../pages/heyyoung/PayMoney/TopUp/PayMoneyTopUpConfirmPage.jsx";
+import PayMoneyTopUpSuccessPage from "../pages/heyyoung/PayMoney/TopUp/PayMoneyTopUpSuccessPage.jsx";
+import PayMoneyTopUpFailPage from "../pages/heyyoung/PayMoney/TopUp/PayMoneyTopUpFailPage.jsx";
+
+import PayMoneyRefundPage from "../pages/heyyoung/PayMoney/Refund/PayMoneyRefundPage.jsx";
+import PayMoneyRefundConfirmPage from "../pages/heyyoung/PayMoney/Refund/PayMoneyRefundConfirmPage.jsx";
+import PayMoneyRefundSuccessPage from "../pages/heyyoung/PayMoney/Refund/PayMoneyRefundSuccessPage.jsx";
+import PayMoneyRefundFailPage from "../pages/heyyoung/PayMoney/Refund/PayMoneyRefundFailPage.jsx";
 
 const AppRoutes = () => {
   return (
@@ -32,10 +37,16 @@ const AppRoutes = () => {
       <Route path="/timetable" element={<TimeTableMainPage/>} />
 
       <Route path="/paymoney" element={<PayMoneyDashboard />} />
+
       <Route path="/paymoney/topup" element={<PayMoneyTopUpPage />} />
       <Route path="/paymoney/topup/confirm" element={<PayMoneyTopUpConfirmPage />} />
-      <Route path="/paymoney/topup/success" element={<PayMoneyTransactionSuccessPage />} />
-      <Route path="/paymoney/topup/fail" element={<PayMoneyTransactionFailPage />} />
+      <Route path="/paymoney/topup/success" element={<PayMoneyTopUpSuccessPage />} />
+      <Route path="/paymoney/topup/fail" element={<PayMoneyTopUpFailPage />} />
+
+      <Route path="/paymoney/refund" element={<PayMoneyRefundPage />} />
+      <Route path="/paymoney/refund/confirm" element={<PayMoneyRefundConfirmPage />} />
+      <Route path="/paymoney/refund/success" element={<PayMoneyRefundSuccessPage />} />
+      <Route path="/paymoney/refund/fail" element={<PayMoneyRefundFailPage />} />
     </Routes>
   );
 };

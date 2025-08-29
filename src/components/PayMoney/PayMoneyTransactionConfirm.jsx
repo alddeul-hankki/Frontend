@@ -1,8 +1,8 @@
 "use client";
 import { useLocation, useNavigate } from "react-router-dom";
-import PayMoneyTopUpConfirm from "../../../components/PayMoney/PayMoneyTopUpConfirm";
-import styles from "./PayMoneyTopUpConfirmPage.module.css";
-import { topupPayMoney } from "../../../util/paymoneyApi";
+import PayMoneyConfirmBtn from "./PayMoneyConfirmBtn.jsx";
+import styles from "./PayMoneyTransactionConfirm.module.css";
+import { topupPayMoney, refundPayMoney } from "../../util/paymoneyApi.js";
 
 function formatKRW(n) {
   const v = Number.isFinite(n) ? n : 0;
@@ -17,7 +17,7 @@ function formatAccountNo(no) {
   return `${s.slice(0, 3)}-${s.slice(3, 6)}-${s.slice(6)}`;
 }
 
-export default function PayMoneyTopUpConfirmPage() {
+export default function PayMoneyTransactionConfirm({ mode = "topup" }) {
   const navigate = useNavigate();
   const { state } = useLocation() || {};
   const amount = state?.amount ?? 0;
@@ -30,37 +30,58 @@ export default function PayMoneyTopUpConfirmPage() {
 
   const disabled = !amount || amount <= 0;
 
+  // mode 별 설정
+  const isTopup = mode === "topup";
+  const actionLabel = isTopup ? "충전하기" : "환불하기";
+  const summaryText = isTopup
+    ? `쏠쏠한Pay머니 ${formatKRW(amount)}원을\n충전합니다.`
+    : `쏠쏠한Pay머니 ${formatKRW(amount)}원을\n환불(출금)합니다.`;
+  const successPath = isTopup
+    ? "/paymoney/topup/success"
+    : "/paymoney/refund/success";
+  const failPath = isTopup
+    ? "/paymoney/topup/fail"
+    : "/paymoney/refund/fail";
+
   const handleSubmit = async () => {
     if (disabled) return;
     try {
       const email = localStorage.getItem("userEmail");
-      const result = await topupPayMoney({
+      if (!email) throw new Error("로그인 정보 없음");
+
+      const payload = {
         email,
         transactionBalance: amount,
-        transactionSummary: "쏠쏠한Pay머니 충전",
-      });
-      console.log("충전 성공:", result);
-      navigate("/paymoney/topup/success")
+        transactionSummary: isTopup
+          ? "쏠쏠한Pay머니 충전"
+          : "쏠쏠한Pay머니 환불",
+      };
+
+      if (isTopup) {
+        await topupPayMoney(payload);
+      } else {
+        await refundPayMoney(payload);
+      }
+
+      navigate(successPath);
     } catch (err) {
-      console.error("충전 중 오류:", err);
-      navigate("/paymoney/topup/fail")
+      console.error(`${isTopup ? "충전" : "환불"} 중 오류:`, err);
+      navigate(failPath);
     }
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <p className={styles.message}>
-          쏠쏠한Pay머니 {formatKRW(amount)}원을
-          <br />
-          충전합니다.
-        </p>
+        <p className={styles.message}>{summaryText}</p>
 
         <div
           className={styles.accountBox}
           role="button"
           tabIndex={0}
-          aria-label={`${bankName} ${productName} ${accountNo}에서 출금`}
+          aria-label={`${bankName} ${productName} ${accountNo}에서 ${
+            isTopup ? "출금" : "입금"
+          }`}
         >
           <div className={styles.bankLogoWrap}>
             {bankLogoUrl ? (
@@ -79,7 +100,9 @@ export default function PayMoneyTopUpConfirmPage() {
               <strong>
                 {bankName} {productName}
               </strong>
-              <span className={styles.gray}>에서 출금</span>
+              <span className={styles.gray}>
+                {isTopup ? "에서 출금" : "으로 입금"}
+              </span>
             </div>
             <div className={styles.accountNumber}>{accountNo}</div>
           </div>
@@ -87,9 +110,9 @@ export default function PayMoneyTopUpConfirmPage() {
       </div>
 
       <div className={styles.actionWrap}>
-        <PayMoneyTopUpConfirm onClick={handleSubmit} disabled={disabled}>
-          충전하기
-        </PayMoneyTopUpConfirm>
+        <PayMoneyConfirmBtn onClick={handleSubmit} disabled={disabled}>
+          {actionLabel}
+        </PayMoneyConfirmBtn>
       </div>
     </div>
   );
