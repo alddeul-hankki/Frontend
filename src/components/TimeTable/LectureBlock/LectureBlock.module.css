@@ -10,10 +10,9 @@
   box-sizing: border-box;
   padding: var(--event-gap);
 
-  border-radius: 14px;
+  border-radius: 0px;
   color: #ffffff;
   font-weight: 600;
-  box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 6px 18px rgba(0,0,0,.06);
   background-clip: padding-box;
   overflow: hidden;
 }
