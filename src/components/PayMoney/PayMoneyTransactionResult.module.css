@@ -1,0 +1,89 @@
+:root {
+  --bg: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --blue: #2563eb;
+  --red: #ef4444;
+  --border: #e5e7eb;
+}
+
+.container {
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.header {
+  height: 16px;
+}
+
+.main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px 8px;
+  text-align: center;
+}
+
+.badge {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #eef2ff;
+  color: var(--blue);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15) inset;
+  margin-bottom: 16px;
+}
+.check {
+  width: 40px;
+  height: 40px;
+}
+
+.failIcon {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.title {
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--text);
+  margin: 8px 0 8px;
+}
+.sub {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.actionWrap {
+  margin-top: auto;
+  padding: 12px 16px calc(16px + env(safe-area-inset-bottom));
+  position: sticky;
+  bottom: 0;
+  background: linear-gradient(
+      180deg,
+      rgba(248, 250, 252, 0) 0%,
+      rgba(248, 250, 252, 1) 40%
+    ),
+    var(--bg);
+}
+
+.fail .badge,
+.isFail {
+  background: #fee2e2;
+  color: var(--red);
+  box-shadow: none;
+}
+
+.fail .title {
+  margin: 8px 0 8px;
+}

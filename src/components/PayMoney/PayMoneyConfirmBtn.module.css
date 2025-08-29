@@ -1,0 +1,28 @@
+.actionBtn {
+  width: 100%;
+  background: var(--blue);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 14px 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+/* enabled 에서만 반응 */
+.actionBtn:hover:enabled,
+.actionBtn:active:enabled {
+  background-color: #1d4ed8;
+}
+
+/* disabled */
+.actionBtn:disabled {
+  background-color: #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
+  box-shadow: none;
+  pointer-events: none;
+}
