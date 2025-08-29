@@ -30,15 +30,15 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 4173,
-    proxy: {
-      '/api': { target: 'http://192.168.12.92:8080', changeOrigin: true, secure: false }
-    }
+    // proxy: {
+    //   '/sol/api': { target: 'http://192.168.12.92:8080', changeOrigin: true, secure: false }
+    // }
   },
   preview: {
     allowedHosts: ['localhost', '127.0.0.1', 'https://cfd8d161bbf2.ngrok-free.app', '.ngrok-free.app'],
-    proxy: {
-      '/api': { target: 'http://192.168.12.92:8080', changeOrigin: true, secure: false }
-    }
+    // proxy: {
+    //   '/sol/api': { target: 'http://192.168.12.92:8080', changeOrigin: true, secure: false }
+    // }
   },
   css: {
     modules: { localsConvention: 'camelCase', generateScopedName: '[name]__[local]___[hash:base64:5]' }
