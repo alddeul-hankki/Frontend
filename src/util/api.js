@@ -11,7 +11,7 @@ const API_CONFIGS = {
     },
 
     solsolhanHankki: {
-        baseURL: import.meta.env.VITE_API_HANKKI_URL || '',
+        baseURL: import.meta.env.VITE_API_SOLSOLHANHANKKI_URL,
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${import.meta.env.VITE_LOGIN_TOKEN}`

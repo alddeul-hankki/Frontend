@@ -10,7 +10,7 @@ const BottomNavigation = () => {
   // URL에 따라 활성 탭 설정
   useEffect(() => {
     switch (location.pathname) {
-      case '/pay':
+      case '/paymoney':
         setActiveTab('페이');
         break;
       default:
@@ -23,7 +23,7 @@ const BottomNavigation = () => {
     
     switch (item.label) {
       case '페이':
-        navigate('/pay');
+        navigate('/paymoney');
         break;
       default:
         navigate('/');

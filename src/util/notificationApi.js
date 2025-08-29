@@ -26,7 +26,7 @@ export const saveFCMToken = async (token) => {
     try {
         const userId = getCurrentUserId();
         const deviceType = getDeviceType();
-        const response = await solsolhanHankkiApi.post('/api/fcm/token', {
+        const response = await solsolhanHankkiApi.post('/fcm/token', {
             fcmToken: token,
             deviceType: deviceType,
             timestamp: new Date().toISOString(),
@@ -41,7 +41,7 @@ export const saveFCMToken = async (token) => {
 
 export const deleteFCMToken = async (token) => {
     try {
-        const response = await solsolhanHankkiApi.delete('/api/fcm/token', {
+        const response = await solsolhanHankkiApi.delete('/fcm/token', {
             data: { fcmToken: token }
         });
         return response.data;
