@@ -39,7 +39,9 @@ function App() {
     '/ddangyo-mock': '땡겨요 Mock',
     '/account-manage': '계좌 관리',
     '/account-connect': '계좌 연결',
-    '/pay': '결제',
+    '/paymoney': '',
+    '/paymoney/topup': '충전하기',
+    '/paymoney/topup/confirm': '충전하기',
     '/solsolpay': '주문 결제',
     '/timetable': '강의 시간표',
   };

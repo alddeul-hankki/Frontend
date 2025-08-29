@@ -12,6 +12,11 @@ import Solsolpay from '../pages/SolsolPay/Solsolpay';
 import TimeTableMainPage from '../pages/heyyoung/TimeTable/TimeTableMainPage/TimeTableMainPage';
 
 import PayMoneyDashboard from "../pages/heyyoung/PayMoney/PayMoneyDashboard";
+import PayMoneyTopUpPage from '../pages/heyyoung/PayMoney/PayMoneyTopUpPage';
+import PayMoneyTopUpConfirmPage from '../pages/heyyoung/PayMoney/PayMoneyTopUpConfirmPage';
+import PayMoneyTransactionSuccessPage from '../pages/heyyoung/PayMoney/PayMoneyTransactionSuccessPage';
+import PayMoneyTransactionFailPage from '../pages/heyyoung/PayMoney/PayMoneyTransactionFailPage';
+
 const AppRoutes = () => {
   return (
     <Routes>
@@ -27,6 +32,10 @@ const AppRoutes = () => {
       <Route path="/timetable" element={<TimeTableMainPage/>} />
 
       <Route path="/paymoney" element={<PayMoneyDashboard />} />
+      <Route path="/paymoney/topup" element={<PayMoneyTopUpPage />} />
+      <Route path="/paymoney/topup/confirm" element={<PayMoneyTopUpConfirmPage />} />
+      <Route path="/paymoney/topup/success" element={<PayMoneyTransactionSuccessPage />} />
+      <Route path="/paymoney/topup/fail" element={<PayMoneyTransactionFailPage />} />
     </Routes>
   );
 };

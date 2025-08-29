@@ -1,0 +1,129 @@
+:root {
+  --bg: #f8fafc;
+  --panel: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --blue: #2563eb;
+  --red: #ef4444;
+  --green: #10b981;
+  --shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
+}
+
+.container { min-height: 100vh; display: flex; justify-content: center; background: var(--bg); padding: 24px 0; }
+.phone {
+  width: 360px;
+  background: var(--panel);
+  border-radius: 28px;
+  box-shadow: 0 16px 48px rgba(16,24,40,.12);
+  outline: 1px solid #eef2f7;
+  overflow: hidden;
+
+  display: flex;         /* ✅ 세로 플렉스 레이아웃 */
+  flex-direction: column;
+}
+
+/* Top bar */
+.topBar {
+  height: 56px;
+  display: grid;
+  grid-template-columns: 56px 1fr 56px;
+  align-items: center;
+  padding: 0 4px;
+}
+.iconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px; 
+  border: none;
+  background: transparent;
+  padding: 8px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #374151;
+  margin-left: 4px;
+}
+.iconBtn:hover { background: #f3f4f6; }
+.title {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1;        /* ✅ 글자 세로 크기 딱 맞춤 */
+}
+/* Auto top-up */
+.pillRow { padding: 8px 16px 0 16px; display: flex; justify-content: flex-end; }
+.autoPill { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; border-radius: 999px; padding: 6px 10px; border: 1px solid var(--border); background: #fff; box-shadow: 0 1px 1.5px rgba(16,24,40,.04); }
+.autoState { margin-left: 4px; font-size: 11px; font-weight: 900; padding: 2px 6px; border-radius: 999px; }
+.autoOn { color: var(--green); }
+.autoOn .autoState { background: rgba(16,185,129,.1); color: var(--green); }
+.autoOff { color: var(--red); }
+.autoOff .autoState { background: rgba(239,68,68,.1); color: var(--red); }
+
+/* Amount input */
+.amountWrap { padding: 12px 16px 0 16px; }
+.amountInput { width: 100%; font-size: 40px; line-height: 1.1; font-weight: 700; letter-spacing: -0.7px; border: none; outline: none; background: transparent; color: var(--text); }
+.underline { height: 1.5px; width: 100%; background: #000000; margin-top: 6px; }
+
+.metaRow { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+.limits { color: var(--muted); font-size: 12px; display: flex; align-items: center; gap: 6px; }
+.metaIcon { color: #c0c4cc; }
+.dot { margin: 0 6px; color: #d1d5db; }
+.balance { font-size: 12px; color: var(--blue); }
+.balanceNum { color: var(--blue); }
+
+/* Presets */
+.presets { padding: 16px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.presetBtn { border: 1px solid var(--border); background: #fff; border-radius: 4px; padding: 8px 0; font-size: 13px; font-weight: 700; color: #111827; cursor: pointer; box-shadow: 0 1px 1.5px rgba(16,24,40,.04); }
+.presetBtn:hover { background: #f9fafb; }
+
+.bottomSpace { height: 320px; }
+
+.bar {
+  display: inline-block;
+  width: 1px;
+  height: 12px;        /* 세로 길이 줄이기 */
+  background-color: #ccc;
+  margin: 0 6px;
+  vertical-align: middle;
+}
+
+.actionWrap {
+  margin-top: auto;      /* ✅ 아래로 밀어붙임 */
+  padding: 16px;
+}
+
+.actionBtn {
+  width: 100%;
+  background: var(--blue);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 14px 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+/* ✅ hover/tap 효과는 enabled일 때만 */
+.actionBtn:hover:enabled,
+.actionBtn:active:enabled {
+  background-color: #1d4ed8;
+}
+
+/* ✅ disabled 상태 */
+.actionBtn:disabled {
+  background-color: #d1d5db; /* 회색 */
+  color: #6b7280;
+  cursor: not-allowed;
+  box-shadow: none;
+  pointer-events: none;      /* 🔒 hover/tap 이벤트 자체 차단 */
+}
+
+.actionBtn:hover {
+  background: #1d4ed8; /* hover 시 조금 진한 파랑 */
+}
