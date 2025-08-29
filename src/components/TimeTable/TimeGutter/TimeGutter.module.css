@@ -1,0 +1,11 @@
+/* 시간 레일 – 동적 행수 반영 */
+.timeGutter{
+  display:grid;
+  grid-template-rows:repeat(var(--rows), var(--hour-h));
+  align-content:start;
+  background:#fff;
+  border:1px solid var(--line);
+  border-right:0;
+  border-radius:12px 0 0 12px;
+  overflow:hidden;
+}
