@@ -1,0 +1,133 @@
+.filterContainer {
+  background: white;
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
+  position: relative;
+}
+
+.searchSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.searchBar {
+  flex: 1;
+  height: 40px;
+  background: #f8f9fa;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.searchIcon {
+  color: #999;
+}
+
+.filterButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 20px;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.filterButton:hover {
+  background: #f8f9fa;
+}
+
+.filterArrow {
+  transition: transform 0.2s ease;
+}
+
+.filterButton:hover .filterArrow {
+  transform: translateY(1px);
+}
+
+.filterDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filterOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filterLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.filterTags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filterTag {
+  padding: 8px 16px;
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filterTag:hover {
+  background: #e3f2fd;
+  border-color: #2196f3;
+  color: #2196f3;
+}
+
+.filterTag.active {
+  background: #2196f3;
+  border-color: #2196f3;
+  color: white;
+  font-weight: 600;
+}
+
+.filterTag.active:hover {
+  background: #1976d2;
+  border-color: #1976d2;
+  color: white;
+}

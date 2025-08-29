@@ -1,0 +1,66 @@
+.content {
+  padding: 24px 20px;
+}
+
+/* 화면 전체를 덮는 오버레이 */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* 카드 자체 */
+.completionSection {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  min-width: 300px;
+  max-width: 90%;
+  animation: fadeIn 0.3s ease-out;
+  text-align: center;
+}
+
+/* 메시지 영역 */
+.successMessage {
+  display: flex;
+  flex-direction: column; /* 아이콘 위, 텍스트 아래 */
+  align-items: center;
+  gap: 10px;
+}
+
+/* 버튼 */
+.completeButton {
+  padding: 12px 25px;
+  background-color: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+/* 카드 등장 애니메이션 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

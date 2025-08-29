@@ -1,0 +1,81 @@
+.payPage {
+  padding: 0;
+}
+
+.payHeader {
+  margin-bottom: 24px;
+}
+
+.payHeader h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: black;
+  margin-bottom: 4px;
+}
+
+.payHeader p {
+  font-size: 14px;
+  color: black;
+  margin: 0;
+}
+
+.balanceCard {
+  background: white;
+  border-radius: 16px;
+  padding: 24px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.balanceInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.balanceLabel {
+  font-size: 14px;
+  color: #666;
+}
+
+.balanceAmount {
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
+}
+
+.chargeButton {
+  background: #6366f1;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.chargeButton:hover {
+  background: #5856eb;
+}
+
+.accountButton {
+  background: #6366f1;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: 400;
+  width: 90%;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  justify-self: center;
+  text-align: center;
+}
+
+.accountButton:hover {
+  background: #5856eb;
+}

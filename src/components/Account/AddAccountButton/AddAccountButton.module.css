@@ -1,0 +1,52 @@
+.addAccountButtonContainer {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 375px;
+  width: calc(100% - 40px);
+  z-index: 1000;
+}
+
+.addAccountButton {
+  width: 100%;
+  height: 56px;
+  background: #6366f1;
+  border: none;
+  border-radius: 28px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.addAccountButton:hover {
+  transform: translateY(-2px);
+}
+
+.addAccountButton:active {
+  transform: translateY(0);
+}
+
+.buttonContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 100%;
+  position: relative;
+}
+
+.buttonText {
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+}
+
+/* 작은 화면 대응 */
+@media (max-width: 375px) {
+  .addAccountButtonContainer {
+    left: 20px;
+    right: 20px;
+    transform: none;
+    width: calc(100% - 40px);
+  }
+}
