@@ -10,6 +10,7 @@ import DdangyoMock from '../pages/DdangyoMock';
 import RestaurantDetail from '../pages/RestaurantDetail/RestaurantDetail';
 import MenuDetail from '../pages/MenuDetail/MenuDetail';
 import Solsolpay from '../pages/SolsolPay/Solsolpay';
+import TimeTableMainPage from '../pages/heyyoung/TimeTable/TimeTableMainPage/TimeTableMainPage';
 
 const AppRoutes = () => {
   return (
@@ -24,6 +25,7 @@ const AppRoutes = () => {
       <Route path="/restaurants/:id" element={<RestaurantDetail />} />
       <Route path="/menus/:menuId" element={<MenuDetail />} />
       <Route path="/solsolpay" element={<Solsolpay />} />
+      <Route path="/timetable" element={<TimeTableMainPage/>} />
     </Routes>
   );
 };
