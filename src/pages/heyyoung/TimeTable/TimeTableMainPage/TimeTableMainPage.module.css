@@ -2,7 +2,7 @@
   --pad-x: clamp(12px, 4vw, 48px);
   --gutter-w: clamp(56px, 8vw, 96px);
   --hour-h: clamp(56px, 10vw, 96px);
-  --rows: 7; /* 동적으로 덮어씌움 */
+  --rows: 7;
 
   --event-gap: 8px;
 
@@ -22,7 +22,6 @@
 .page, .page * { box-sizing: border-box; }
 .page{ width:100%; min-height:100dvh; background:#fff; display:flex; flex-direction:column; }
 
-/* 탭/상단바 동일 (생략 없이 유지) */
 .tabs{ display:flex; gap:24px; padding:8px var(--pad-x) 0 var(--pad-x); border-bottom:2px solid #e9edf3; }
 .tab{ position:relative; padding:12px 2px; font-size:var(--fs-lg); color:var(--ink-weak); background:none; border:0; }
 .active{ color:var(--ink-strong); font-weight:700; }
@@ -34,7 +33,6 @@
 
 .gridWrap{ display:grid; grid-template-columns:var(--gutter-w) 1fr; gap:0; padding:0 var(--pad-x) var(--pad-x) var(--pad-x); }
 
-/* 본 그리드 컨테이너 */
 .gridBody{
   position:relative;
   border:1px solid var(--line);
@@ -44,12 +42,11 @@
   background:#fff;
 }
 
-/* 내부 셀 래퍼: 그리드 가로(요일)만 사용, 세로는 절대좌표 */
 .cells{
-  --cols: 5; /* 동적으로 덮어씀 */
+  --cols: 5;
   display:grid;
   grid-template-columns:repeat(var(--cols), minmax(0,1fr));
-  /* 세로 라인은 배경으로 반복 (행 수는 --rows) */
+
   position:relative;
   width:100%;
   min-height:calc(var(--rows) * var(--hour-h));
@@ -64,7 +61,6 @@
   background-repeat: repeat, repeat;
 }
 
-/* 초소형 보정 */
 @media (max-width:360px){
   :root{ --hour-h: clamp(52px, 14vw, 82px); }
   .gridWrap{ grid-template-columns:calc(var(--gutter-w) - 6px) 1fr; }

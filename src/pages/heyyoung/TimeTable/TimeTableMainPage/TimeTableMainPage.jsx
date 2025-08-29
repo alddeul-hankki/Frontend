@@ -6,7 +6,6 @@ import TimeGutter from "../../../../components/TimeTable/TimeGutter/TimeGutter";
 import LectureBlock from "../../../../components/TimeTable/LectureBlock/LectureBlock";
 
 function TimeTableMainPage() {
-  /** 데모 데이터: 분 단위 (09:00=540) */
   const lectures = useMemo(
     () => [
       {
@@ -116,13 +115,11 @@ function TimeTableMainPage() {
     ],
     []
   );
-  const COLS = 5; // 월~금
+  const COLS = 5;
 
-  // 기본 시간 범위(없을 때)
   const DEFAULT_START = 9;
   const DEFAULT_END = 18;
 
-  // 데이터 기반 시간 범위(분 단위) → 시간 단위로 올림/내림
   const { startHour, endHour, rows } = useMemo(() => {
     if (!lectures.length) {
       const s = DEFAULT_START,
@@ -131,7 +128,7 @@ function TimeTableMainPage() {
     }
     const minStart = Math.min(...lectures.map((e) => e.startMin));
     const maxEnd = Math.max(...lectures.map((e) => e.endMin));
-    const sHour = (minStart - 60) / 60; // 시 단위
+    const sHour = (minStart - 60) / 60;
     const eHour = (maxEnd + 60) / 60;
     const s = Math.floor(sHour);
     const e = Math.ceil(eHour);
@@ -160,8 +157,6 @@ function TimeTableMainPage() {
           style={{ "--gutter-w": "clamp(56px, 8vw, 96px)" }}
         >
           <TimeGutter startHour={startHour} endHour={endHour} rows={rows} />
-
-          {/* 본 그리드 */}
           <div className={styles.gridBody}>
             <div
               className={styles.cells}

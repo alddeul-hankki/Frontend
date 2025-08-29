@@ -1,6 +1,5 @@
 import styles from "./TimeGutter.module.css"
 
-/** 좌측 시간 라벨 (startHour..endHour-1) */
 const TimeGutter = ({ startHour, endHour, rows }) => {
   const hours = [];
   for (let h = startHour; h < endHour; h++) hours.push(h);

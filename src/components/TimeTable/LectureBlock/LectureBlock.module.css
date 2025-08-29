@@ -1,16 +1,12 @@
-/* === 분 단위 절대 배치 === */
 .lectureBlockAbs{
   position: absolute;
 
-  /* 가로: 열과 정확히 동일하게 */
   width: calc(100% / var(--cols));
   left: calc((var(--col) - 1) * 100% / var(--cols));
 
-  /* 세로: 분 단위 위치/높이(그대로 유지) */
   top: calc(var(--startH) * var(--hour-h));
   height: calc(var(--durH) * var(--hour-h));
 
-  /* 내부 여백은 박스 안쪽에만 적용되도록 */
   box-sizing: border-box;
   padding: var(--event-gap);
 

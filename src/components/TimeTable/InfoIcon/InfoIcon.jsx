@@ -1,4 +1,3 @@
-
 const InfoIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
     <circle cx="12" cy="12" r="10" fill="#e9eef5" />
