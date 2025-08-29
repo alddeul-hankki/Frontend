@@ -29,8 +29,6 @@ const AccountManageContainer = () => {
 
         const accountData = await getAccounts(email);
         const accountList = accountData || [];
-        
-        // setAccounts(accountList);
         setHasAccount(accountList.length > 0);
 
         // 주거래 계좌 선택

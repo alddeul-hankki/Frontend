@@ -62,11 +62,7 @@ const TransactionList = ({ accountId, onBalancesFetched }) => {
   const getAmountClass = (amount) => {
     return amount > 0 ? styles.deposit : styles.withdrawal;
   };
-
-  const getTransactionType = (amount) => {
-    return amount > 0 ? '입금' : '출금';
-  };
-
+  
   return (
     <div className={styles.listContainer}>
       <div className={styles.dateHeader}>
@@ -97,10 +93,15 @@ const TransactionList = ({ accountId, onBalancesFetched }) => {
                          
             <div className={styles.transactionAmount}>
               <div className={styles.amountContainer}>
-                <span className={styles.transactionType}>
-                  {getTransactionType(transaction.afterBalance)}
+                <span
+                  className={styles.transactionType}
+                  style={{ color: transaction.typeName === "출금" ? "red" : "blue" }}
+                >
+                  {transaction.typeName}
                 </span>
-                <span className={getAmountClass(transaction.balance)}>
+                <span className={getAmountClass(transaction.balance)}
+                  style={{ color: 'black' }}
+                >
                   {formatAmount(transaction.balance)}원
                 </span>
               </div>

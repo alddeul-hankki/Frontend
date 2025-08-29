@@ -17,7 +17,7 @@ const PayPage = () => {
       try {
         const userRequest = {
           // TODO: 처음에 헤이영 입장 시 user email 을 입력하기 위한 폼 필요
-          email: 'test6@email.com',
+          email: 'hong@test.com',
         };
         const userData = await getOrCreateUser(userRequest);
         // localStorage에 저장
