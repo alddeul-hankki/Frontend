@@ -24,4 +24,11 @@ const createOrder = async (orderRequest) => {
     return response.data;
 };
 
-export { getGroupList, orderPreview, getPickupZones, createOrder };
+// 결제 결과 조회 (payment_token 기반)
+const getOrderResult = async (paymentToken) => {
+    const config = paymentToken ? { params: { payment_token: paymentToken } } : undefined;
+    const response = await solsolhanHankkiApi.get(`/orders/result`, config);
+    return response.data;
+};
+
+export { getGroupList, orderPreview, getPickupZones, createOrder, getOrderResult };

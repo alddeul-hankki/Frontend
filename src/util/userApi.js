@@ -1,6 +1,6 @@
 import { post } from './api';
 
-const baseURL = "http://localhost:8080";
+const baseURL = import.meta.env.VITE_API_URL;
 
 // 사용자 생성
 export const getOrCreateUser = async (userRequest) => {

@@ -1,6 +1,6 @@
 import api from './api';
 
-const baseURL = "http://localhost:8080";
+const baseURL = import.meta.env.VITE_API_URL;
 
 export const getAccounts = async (email) => {
   try {

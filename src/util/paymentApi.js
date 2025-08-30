@@ -1,6 +1,6 @@
 import { post } from './api';
 
-const baseURL = "http://localhost:8080";
+const baseURL = import.meta.env.VITE_API_URL;
 
 // 결제 요청
 export const postPayment = async (token, userId) => {
