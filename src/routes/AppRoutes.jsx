@@ -22,6 +22,7 @@ import PayMoneyRefundConfirmPage from "../pages/heyyoung/PayMoney/Refund/PayMone
 import PayMoneyRefundSuccessPage from "../pages/heyyoung/PayMoney/Refund/PayMoneyRefundSuccessPage.jsx";
 import PayMoneyRefundFailPage from "../pages/heyyoung/PayMoney/Refund/PayMoneyRefundFailPage.jsx";
 import PaymentPage from '../pages/heyyoung/Payment/PaymentPage';
+import OrderComplete from '../pages/SolsolPay/OrderComplete';
 
 const AppRoutes = () => {
   return (
@@ -36,6 +37,7 @@ const AppRoutes = () => {
       <Route path="/restaurants/:id" element={<RestaurantDetail />} />
       <Route path="/menus/:menuId" element={<MenuDetail />} />
       <Route path="/solsolpay" element={<Solsolpay />} />
+      <Route path="/order/complete" element={<OrderComplete />} />
       <Route path="/timetable" element={<TimeTableMainPage/>} />
 
       <Route path="/paymoney" element={<PayMoneyDashboard />} />

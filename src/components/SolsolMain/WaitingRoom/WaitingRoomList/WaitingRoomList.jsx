@@ -35,14 +35,36 @@ const WaitingRoomList = () => {
       console.log('API Response:', response);
 
       if (response && Array.isArray(response)) {
-        // 만료된 그룹 제거 (deadlineAt이 현재 시각 이전이면 제외)
+        // 만료된 그룹 제거 (deadlineAt|scheduledDeadlineAt 이 현재 시각 이전이면 제외)
         const nowMs = Date.now();
         const filtered = response.filter((room) => {
-          if (room.deadlineAt) {
-            const d = new Date(room.deadlineAt).getTime();
+          const dl = room.deadlineAt || room.scheduledDeadlineAt;
+          if (dl) {
+            const d = new Date(dl).getTime();
             return d > nowMs; // 아직 마감 전만 노출
           }
           return true; // deadlineAt 없으면 일단 노출
+        });
+
+        // 정렬: 1) 마감 임박 순, 2) 배달비 작은 순
+        const getDeadlineMs = (r) => {
+          const dl = r.deadlineAt || r.scheduledDeadlineAt;
+          return dl ? new Date(dl).getTime() : Number.MAX_SAFE_INTEGER;
+        };
+        const getFee = (r) => (
+          r.expectedDiscountedDeliveryFee ??
+          r.originalDeliveryFee ??
+          r.currentDeliveryFee ??
+          r.deliveryFee ??
+          Number.MAX_SAFE_INTEGER
+        );
+        filtered.sort((a, b) => {
+          const ad = getDeadlineMs(a);
+          const bd = getDeadlineMs(b);
+          if (ad !== bd) return ad - bd; // 가까울수록 먼저
+          const af = getFee(a);
+          const bf = getFee(b);
+          return af - bf; // 배달비 낮을수록 먼저
         });
 
         const currentPage = Math.floor(currentItemsRef.current / pageSize);

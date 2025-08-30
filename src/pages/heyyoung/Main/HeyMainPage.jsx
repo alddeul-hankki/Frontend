@@ -11,6 +11,7 @@ const HeyMainPage = () => {
   useEffect(() => {
     localStorage.setItem('userId', '14');
     localStorage.setItem('userEmail', 'hong1@test.com');
+
   }, []);
 
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const HeyMainPage = () => {
     if (item.id === 'solsolhanhankki') navigate('/solsol');
     if (item.id === 'timetable') navigate('/timetable');
   };
+  
   return (
     <div className={styles.app}>
       <Header />

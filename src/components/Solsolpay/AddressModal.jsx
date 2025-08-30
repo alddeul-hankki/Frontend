@@ -30,7 +30,6 @@ const AddressModal = ({ open, onClose, onSelect, pickupZones = [] }) => {
       pickupZones.forEach((zone, index) => {
         console.log(`[KAKAO] 마커 ${index + 1} 생성:`, zone);
         
-        // 좌표 확인
         const lat = zone.latitude || zone.lat;
         const lng = zone.longitude || zone.lng;
         
