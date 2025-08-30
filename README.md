@@ -1,4 +1,4 @@
-## 1. React 개발 서버 실행
+### 1. React 개발 서버 실행
 개발 환경에서 프로젝트를 실행하려면 아래 명령어를 사용하세요:
 
 ```bash
@@ -9,13 +9,13 @@ npm install
 npm run dev
 ```
 
-## 2. PWA(Progressive Web App) 소개
+### 2. PWA(Progressive Web App) 소개
 
 본 프로젝트는 PWA를 지원합니다.
 PWA는 웹앱을 네이티브 앱처럼 설치하여 홈 화면에서 실행할 수 있으며,
 오프라인 접근 및 푸시 알림 등의 기능도 지원합니다.
 
-## 📱 3. 모바일에서 PWA 실행 방법
+### 📱 3. 모바일에서 PWA 실행 방법
 **✅ Android (Chrome 기준)**
 
 모바일 Chrome 브라우저로 서비스 주소 접속
