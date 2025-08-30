@@ -1,0 +1,47 @@
+.payment-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.payment-content {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.error-message {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 24px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.error-message p {
+  color: #dc2626;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 480px) {
+  .payment-content {
+    padding: 16px 12px;
+    gap: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .payment-content {
+    max-width: 480px;
+    padding: 32px 24px;
+    gap: 32px;
+  }
+}

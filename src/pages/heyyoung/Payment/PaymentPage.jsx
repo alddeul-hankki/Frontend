@@ -7,10 +7,14 @@ import PaymentButton from '../../../components/Payment/PaymentButton/PaymentButt
 import styles from './PaymentPage.module.css';
 import PageHeader from './../../../components/PageHeader/PageHeader';
 import { postPayment, withdrawPayment } from './../../../util/paymentApi';
+import LoadingSpinner from './../../../components/Payment/LoadingSpinner/LoadingSpinner';
 
 const PaymentPage = () => {
   const location = useLocation();
   const [paymentResponse, setPaymentResponse] = useState(null);
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
+
 
   // 쿼리 스트링 파싱
   const query = new URLSearchParams(location.search);
@@ -20,12 +24,16 @@ const PaymentPage = () => {
   useEffect(() => {
     const fetchPayment = async () => {
       try {
+        setIsLoading(true)
         const userId = localStorage.getItem("userId");
         const response = await postPayment(token, userId);
         console.log(response)
         setPaymentResponse(response.data);
       } catch (err) {
-        console.error(err);
+        console.error(err)
+        setError("결제 정보를 불러오는데 실패했습니다.")
+      } finally {
+        setIsLoading(false)
       }
     };
     fetchPayment();
@@ -64,12 +72,40 @@ const PaymentPage = () => {
       window.location.href = response.data;
     } catch (err) {
       console.error(err);
+      setError("결제 처리 중 오류가 발생했습니다.")
     }
   };
   
 
+  if (isLoading) {
+    return (
+      <div className="payment-container">
+        <PageHeader title="쏠쏠한 페이 결제" />
+        <LoadingSpinner message="결제 정보를 불러오는 중..." />
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="payment-container">
+        <PageHeader title="쏠쏠한 페이 결제" />
+        <div className="error-message">
+          <p>{error}</p>
+        </div>
+      </div>
+    )
+  }
+
   if (!paymentData) {
-    return <div>결제 정보를 불러오는 중...</div>; // 로딩 상태 표시
+    return (
+      <div className="payment-container">
+        <PageHeader title="쏠쏠한 페이 결제" />
+        <div className="error-message">
+          <p>결제 정보를 찾을 수 없습니다.</p>
+        </div>
+      </div>
+    )
   }
 
   return (

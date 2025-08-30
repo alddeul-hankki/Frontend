@@ -12,10 +12,10 @@ function formatKRW(num) {
 
 export default function PayMoneyTransaction({
   mode = "topup",
-  defaultAmount = 10000,
-  min = 5000,
-  max = 430000,
-  balance = 1000000,
+  defaultAmount = 0,
+  min = 1000,
+  max = 500000,
+  balance = 500000,
   onAmountChange,
   presets: _presets,
 }) {
@@ -23,7 +23,7 @@ export default function PayMoneyTransaction({
   const navigate = useNavigate();
   const location = useLocation();
 
-  const invalid = amount < min || amount > max;
+  const invalid = amount == 0 || amount > max;
   const disabled = invalid || amount === 0;
 
   const presets = useMemo(
@@ -70,10 +70,6 @@ export default function PayMoneyTransaction({
               최소 {formatKRW(min)}원 <span className={styles.dot}>·</span> 최대{" "}
               {formatKRW(max)}원
               <MessageCircle size={14} className={styles.metaIcon} />
-            </div>
-            <div className={styles.balance}>
-              {balanceLabel} :{" "}
-              <span className={styles.balanceNum}>{formatKRW(balance)}원</span>
             </div>
           </div>
         </div>
