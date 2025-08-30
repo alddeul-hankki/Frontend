@@ -23,6 +23,9 @@ import PayMoneyRefundSuccessPage from "../pages/heyyoung/PayMoney/Refund/PayMone
 import PayMoneyRefundFailPage from "../pages/heyyoung/PayMoney/Refund/PayMoneyRefundFailPage.jsx";
 import PaymentPage from '../pages/heyyoung/Payment/PaymentPage';
 
+import PayMoneyHistoryPage from "../pages/heyyoung/PayMoney/History/PayMoneyHistoryPage.jsx";
+
+
 const AppRoutes = () => {
   return (
     <Routes>
@@ -49,6 +52,9 @@ const AppRoutes = () => {
       <Route path="/paymoney/refund/confirm" element={<PayMoneyRefundConfirmPage />} />
       <Route path="/paymoney/refund/success" element={<PayMoneyRefundSuccessPage />} />
       <Route path="/paymoney/refund/fail" element={<PayMoneyRefundFailPage />} />
+
+      <Route path="/paymoney/history" element={<PayMoneyHistoryPage />} />
+
     </Routes>
   );
 };
