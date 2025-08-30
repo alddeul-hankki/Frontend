@@ -1,12 +1,12 @@
 import api from './api';
 
-const baseURL = "http://localhost:8080";
+const baseURL = "https://api.version-pulse.store";
 
 export const getAccounts = async (email) => {
   try {
     const response = await api.get(baseURL + '/api/accounts', { email });
     console.log(response);
-    return response;
+    return response.data;
   } catch (error) {
     console.error('계좌 조회 실패:', error);
     throw error;

@@ -1,6 +1,6 @@
 import api from './api';
 
-const baseURL = "http://localhost:8080";
+const baseURL = "https://api.version-pulse.store";
 
 export const verifyAccount = async (email, accountId) => {
   try {
