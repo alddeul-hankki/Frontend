@@ -33,10 +33,6 @@ const AddressSelect = ({ value, onChange, pickupZones = [], isGroupOrder = false
           <span>▾</span>
         </button>
       </div>
-      {isGroupOrder && (
-        <div className={styles.groupOrderNote}>
-        </div>
-      )}
       <AddressModal
         open={open}
         onClose={() => setOpen(false)}

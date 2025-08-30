@@ -248,10 +248,6 @@ const Solsolpay = () => {
           loading={loading}
           disabled={!isPickupZoneSelected || !isTimeSelected}
           onOrderSubmit={async () => {
-            console.log('🛒 주문 예약하기 버튼 클릭');
-            console.log('📍 현재 time 상태:', time);
-            console.log('📍 time 타입:', typeof time);
-            console.log('📍 time 길이:', time.length);
             
             if (!selectedPickupZoneId || !time) {
               alert('픽업존과 시간을 선택해주세요.');
@@ -281,13 +277,6 @@ const Solsolpay = () => {
                 pickupAt: convertTimeToOffsetDateTime(pickupTime), // 픽업 시간 그대로 사용
                 orderItems: previewData?.orderItems || []
               };
-              
-              console.log('📤 OrderRequest 데이터:', orderRequest);
-              console.log('📤 deadlineAt 값:', orderRequest.deadlineAt);
-              console.log('📤 pickupAt 값:', orderRequest.pickupAt);
-              console.log('📤 deadlineAt 타입:', typeof orderRequest.deadlineAt);
-              console.log('📤 pickupAt 타입:', typeof orderRequest.pickupAt);
-              
               // createOrder API 호출
               const response = await createOrder(orderRequest);
               console.log('✅ 주문 생성 및 결제 준비 성공:', response);

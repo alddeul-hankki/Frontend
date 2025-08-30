@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 const HeyMainPage = () => {
 
   useEffect(() => {
+
     localStorage.setItem('userId', '13');
     localStorage.setItem('userEmail', 'sora.kang@example.com');
   }, []);
@@ -18,6 +19,7 @@ const HeyMainPage = () => {
     if (item.id === 'solsolhanhankki') navigate('/solsol');
     if (item.id === 'timetable') navigate('/timetable');
   };
+
   return (
     <div className={styles.app}>
       <Header />

@@ -20,10 +20,6 @@ const TimeSelect = ({ value, onChange, options, isGroupOrder = false }) => {
           <span>▾</span>
         </button>
       </div>
-      {isGroupOrder && (
-        <div className={styles.groupOrderNote}>
-        </div>
-      )}
       <TimeModal open={open} onClose={() => setOpen(false)} onSelect={(v) => onChange(v)} />
     </section>
   );

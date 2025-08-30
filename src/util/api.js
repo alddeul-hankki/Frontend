@@ -4,18 +4,10 @@ import axios from 'axios';
 const API_CONFIGS = {
     ddangyo: {
         baseURL: import.meta.env.VITE_API_DDANGYO_URL,
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${import.meta.env.VITE_LOGIN_TOKEN}`
-        }
     },
 
     solsolhanHankki: {
         baseURL: import.meta.env.VITE_API_SOLSOLHANHANKKI_URL,
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${import.meta.env.VITE_LOGIN_TOKEN}`
-        }
     }    
 };
 
