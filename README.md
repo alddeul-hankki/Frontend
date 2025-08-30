@@ -1,12 +1,34 @@
-# React + Vite
+## 1. React 개발 서버 실행
+개발 환경에서 프로젝트를 실행하려면 아래 명령어를 사용하세요:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+```bash
+# 패키지 설치
+npm install
 
-Currently, two official plugins are available:
+# 개발 서버 실행
+npm run dev
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 2. PWA(Progressive Web App) 소개
 
-## Expanding the ESLint configuration
+본 프로젝트는 PWA를 지원합니다.
+PWA는 웹앱을 네이티브 앱처럼 설치하여 홈 화면에서 실행할 수 있으며,
+오프라인 접근 및 푸시 알림 등의 기능도 지원합니다.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📱 3. 모바일에서 PWA 실행 방법
+**✅ Android (Chrome 기준)**
+
+모바일 Chrome 브라우저로 서비스 주소 접속
+화면 하단 혹은 브라우저 메뉴(⋮) 클릭
+"홈 화면에 추가(Add to Home screen)" 선택
+아이콘 이름 확인 후 "추가" 버튼 클릭
+홈 화면에 앱 아이콘이 생성되고, 네이티브 앱처럼 실행 가능
+
+**🍎 iOS (Safari 기준)**
+
+Safari 브라우저로 서비스 주소 접속
+하단 메뉴바의 공유 버튼(⬆️ 사각형 아이콘) 선택
+옵션 중에서 "홈 화면에 추가(Add to Home Screen)" 클릭
+앱 이름 확인 후 "추가" 선택
+홈 화면에 앱 아이콘이 생성되고, 네이티브 앱처럼 실행 가능
+⚠️ 참고: iOS는 PWA 기능이 제한적일 수 있으며, 백그라운드 푸시 알림 등 일부 기능은 지원되지 않습니다.
