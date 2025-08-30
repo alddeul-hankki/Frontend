@@ -290,11 +290,24 @@ const Solsolpay = () => {
               
               // createOrder API 호출
               const response = await createOrder(orderRequest);
-              console.log('✅ 주문 생성 성공:', response);
-              
-              // 성공 시 처리 (예: 주문 완료 페이지로 이동)
-              alert('주문이 성공적으로 예약되었습니다!');
-              navigate('/solsol');
+              console.log('✅ 주문 생성 및 결제 준비 성공:', response);
+
+      // --- ⬇️ 여기가 핵심 수정 부분입니다 ⬇️ ---
+
+      // 1. 백엔드 응답에서 paymentRedirectUrl을 추출합니다.
+      const redirectUrl = response.paymentRedirectUrl;
+
+      // 2. redirectUrl이 있는지 확인합니다.
+      if (redirectUrl) {
+        console.log('🌐 결제 페이지로 리다이렉트:', redirectUrl);
+        // 3. 페이지를 결제 URL로 이동시킵니다.
+        window.location.href = redirectUrl;
+      } else {
+        // 4. URL이 없는 예외 상황을 처리합니다.
+        console.error('❌ 응답에 리다이렉트 URL이 없습니다.');
+        alert('결제 페이지 정보를 받아오지 못했습니다. 다시 시도해주세요.');
+        setLoading(false); // 로딩 상태 해제
+      }
               
             } catch (error) {
               console.error('❌ 주문 생성 실패:', error);
