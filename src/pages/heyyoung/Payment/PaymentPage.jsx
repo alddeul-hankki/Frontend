@@ -39,7 +39,8 @@ const PaymentPage = () => {
       totalAmount: paymentResponse.amount,
       currentBalance: paymentResponse.balance,
       redirectUrl: paymentResponse.redirectUrl,
-      accountNumber: paymentResponse.maskedAccountNumber
+      accountNumber: paymentResponse.maskedAccountNumber,
+      orderId: paymentResponse.orderId
     };
   }, [paymentResponse]);
 
@@ -52,7 +53,7 @@ const PaymentPage = () => {
     try {
       const userId = localStorage.getItem("userId");
       const request = {
-        orderId: 1, // 임시 데이터
+        orderId: paymentData?.orderId, // 임시 데이터
         userId: userId,
         redirectUrl: paymentData?.redirectUrl,
         amount: paymentData?.totalAmount,

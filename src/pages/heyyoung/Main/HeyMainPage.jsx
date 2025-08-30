@@ -9,7 +9,8 @@ import { useEffect } from 'react';
 const HeyMainPage = () => {
 
   useEffect(() => {
-    localStorage.setItem('userId', '1');
+    localStorage.setItem('userId', '14');
+    localStorage.setItem('userEmail', 'hong1@test.com');
   }, []);
 
   const navigate = useNavigate();

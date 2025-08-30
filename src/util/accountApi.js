@@ -5,7 +5,8 @@ const baseURL = "http://localhost:8080";
 export const getAccounts = async (email) => {
   try {
     const response = await api.get(baseURL + '/api/accounts', { email });
-    return response.data;
+    console.log(response);
+    return response;
   } catch (error) {
     console.error('계좌 조회 실패:', error);
     throw error;
