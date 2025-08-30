@@ -2,6 +2,13 @@ import api from './api';
 
 const baseURL = "https://api.version-pulse.store";
 
+export const createPayMoney = async ({ email }) => {
+  const { data } = await api.post(`${baseURL}/api/paymoney/create`, {
+    email,
+  });
+  return data;
+};
+
 export const getLedgerHistory = async ({ email }) => {
   const { data } = await api.post(`${baseURL}/api/paymoney/getLedgerHistory`, {
     email,

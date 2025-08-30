@@ -5,13 +5,18 @@ import StepItem from "../StepItem/StepItem";
 import BankSelectForm from "../BankSelectForm/BankSelectForm";
 import VerificationCodeForm from "../VerificationCodeForm/VerificationCodeForm";
 import WithdrawalAgreementForm from "../WithdrawalAgreementForm/WithdrawalAgreementForm";
+import { createPayMoney } from "../../../util/paymoneyApi";
 
 const AccountConnectForm = ({ account }) => {
   const navigate = useNavigate();
 
   const [openStep, setOpenStep] = useState(null); // 현재 열려있는 단계
   const [currentStep, setCurrentStep] = useState(1); // 진행중인 단계
-  const [completedSteps, setCompletedSteps] = useState({ 1: false, 2: false, 3: false });
+  const [completedSteps, setCompletedSteps] = useState({
+    1: false,
+    2: false,
+    3: false,
+  });
   const [selectedAccount, setSelectedAccount] = useState(account);
 
   // 완료 처리 헬퍼
@@ -42,10 +47,20 @@ const AccountConnectForm = ({ account }) => {
   }, []);
 
   const handleCompleteConnection = () => {
+    async () => {
+      try {
+        const email = localStorage.getItem("userEmail");
+        if (!email) return;
+        const res = await createPayMoney({ email });
+      } catch (e) {
+        console.error("PayMoney 생성 실패:", e);
+      }
+    };
     navigate("/paymoney");
   };
 
-  const isAllCompleted = completedSteps[1] && completedSteps[2] && completedSteps[3];
+  const isAllCompleted =
+    completedSteps[1] && completedSteps[2] && completedSteps[3];
 
   return (
     <>
@@ -105,30 +120,30 @@ const AccountConnectForm = ({ account }) => {
 
         {/* 완료 섹션 */}
         {isAllCompleted && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.completionSection}>
-            <div className={styles.successMessage}>
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <circle cx="10" cy="10" r="10" fill="#6366f1" />
-                <path
-                  d="M6 10l3 3 5-6"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <span>모든 단계가 완료되었습니다!</span>
+          <div className={styles.modalOverlay}>
+            <div className={styles.completionSection}>
+              <div className={styles.successMessage}>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="10" fill="#6366f1" />
+                  <path
+                    d="M6 10l3 3 5-6"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <span>모든 단계가 완료되었습니다!</span>
+              </div>
+              <button
+                className={styles.completeButton}
+                onClick={handleCompleteConnection}
+              >
+                계좌 연결 성공
+              </button>
             </div>
-            <button
-              className={styles.completeButton}
-              onClick={handleCompleteConnection}
-            >
-              계좌 연결 성공
-            </button>
           </div>
-        </div>
-      )}
+        )}
       </div>
     </>
   );
