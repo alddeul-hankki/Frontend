@@ -1,12 +1,16 @@
 import api from './api';
 
+<<<<<<< HEAD
 const baseURL = import.meta.env.VITE_API_BASE_URL;
+=======
+const baseURL = "https://api.version-pulse.store";
+>>>>>>> df5dbfff666e8687faa7471668db6a4a3d4ae129
 
 export const getAccounts = async (email) => {
   try {
     const response = await api.get(baseURL + '/api/accounts', { email });
     console.log(response);
-    return response;
+    return response.data;
   } catch (error) {
     console.error('계좌 조회 실패:', error);
     throw error;

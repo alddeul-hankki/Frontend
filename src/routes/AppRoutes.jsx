@@ -24,6 +24,9 @@ import PayMoneyRefundFailPage from "../pages/heyyoung/PayMoney/Refund/PayMoneyRe
 import PaymentPage from '../pages/heyyoung/Payment/PaymentPage';
 import OrderComplete from '../pages/SolsolPay/OrderComplete';
 
+import PayMoneyHistoryPage from "../pages/heyyoung/PayMoney/History/PayMoneyHistoryPage.jsx";
+
+
 const AppRoutes = () => {
   return (
     <Routes>
@@ -51,6 +54,9 @@ const AppRoutes = () => {
       <Route path="/paymoney/refund/confirm" element={<PayMoneyRefundConfirmPage />} />
       <Route path="/paymoney/refund/success" element={<PayMoneyRefundSuccessPage />} />
       <Route path="/paymoney/refund/fail" element={<PayMoneyRefundFailPage />} />
+
+      <Route path="/paymoney/history" element={<PayMoneyHistoryPage />} />
+
     </Routes>
   );
 };
