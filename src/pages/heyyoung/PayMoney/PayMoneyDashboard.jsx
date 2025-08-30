@@ -114,7 +114,7 @@ export default function PayMoneyDashboard() {
   useEffect(() => {
     (async () => {
       try {
-        const userRequest = { email: "hong1@test.com" };
+        const userRequest = { email: "sora.kang@example.com" };
         const userResp = await getOrCreateUser(userRequest);
         console.log("getOrCreateUser resp:", userResp);
 
