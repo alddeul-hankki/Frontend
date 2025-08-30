@@ -2,14 +2,26 @@ import api from './api';
 
 const baseURL = "http://localhost:8080";
 
-export const inquirePayMoney = async ({ email }) => {
-  const { data } = await api.post(`${baseURL}/api/paymoney/inquiry`, {
-    email
+export const getLedgerHistory = async ({ email }) => {
+  const { data } = await api.post(`${baseURL}/api/paymoney/getLedgerHistory`, {
+    email,
   });
   return data;
 };
- 
-export const topupPayMoney = async ({ email, accountNo, transactionBalance, transactionSummary }) => {
+
+export const inquirePayMoney = async ({ email }) => {
+  const { data } = await api.post(`${baseURL}/api/paymoney/inquiry`, {
+    email,
+  });
+  return data;
+};
+
+export const topupPayMoney = async ({
+  email,
+  accountNo,
+  transactionBalance,
+  transactionSummary,
+}) => {
   const { data } = await api.post(`${baseURL}/api/paymoney/topup`, {
     email,
     transactionBalance,
@@ -18,7 +30,12 @@ export const topupPayMoney = async ({ email, accountNo, transactionBalance, tran
   return data;
 };
 
-export const refundPayMoney = async ({ email, accountNo, transactionBalance, transactionSummary }) => {
+export const refundPayMoney = async ({
+  email,
+  accountNo,
+  transactionBalance,
+  transactionSummary,
+}) => {
   const { data } = await api.post(`${baseURL}/api/paymoney/refund`, {
     email,
     transactionBalance,
@@ -26,4 +43,3 @@ export const refundPayMoney = async ({ email, accountNo, transactionBalance, tra
   });
   return data;
 };
-

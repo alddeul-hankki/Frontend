@@ -1,0 +1,94 @@
+/* PayMoneyHistoryPage.module.css */
+.container {
+  min-height: 100vh;
+  background: #ffffff;
+  padding: 12px 0 24px;
+}
+
+/* Header */
+.header { padding: 8px 16px 4px; }
+.title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* History list */
+.historyWrap {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
+  gap: 12px;
+}
+
+/* Empty state */
+.emptyBox {
+  background: #f9fafb;
+  border: 1px dashed #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+.emptyTitle { margin: 0 0 6px; font-weight: 700; color: #111827; }
+.emptySub { margin: 0; font-size: 13px; color: #6b7280; }
+
+/* Item */
+.historyItem {
+  display: flex;
+  align-items: center;
+  background: #f9fafb;
+  border-radius: 14px;
+  padding: 12px 14px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  border: 1px solid #eef2f7;
+}
+.iconWrap { margin-right: 12px; display: flex; align-items: center; }
+.depositIcon { color: #10b981; } /* green */
+.withdrawIcon { color: #ef4444; } /* red */
+
+.historyContent { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.rowTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.description {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+.amount {
+  font-size: 16px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.depositAmount { color: #10b981; }
+.withdrawAmount { color: #ef4444; }
+
+.rowBottom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #6b7280;
+}
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: #eef2ff;
+  color: #3730a3;
+  font-weight: 600;
+  font-size: 12px;
+  border: 1px solid #e0e7ff;
+}
+.dot { opacity: 0.6; }
+.date { }
+.balance { }
+
+/* (Optional) hover */
+.historyItem:hover {
+  background: #f3f4f6;
+  transition: background .15s ease;
+}

@@ -7,7 +7,7 @@ import {
   QrCode,
   Send,
   MoreHorizontal,
-  RotateCcw
+  RotateCcw,
 } from "lucide-react";
 import styles from "./PayMoneyDashboard.module.css";
 import { inquirePayMoney } from "../../../util/paymoneyApi";
@@ -71,7 +71,13 @@ function ActionRail({ onTopUpClick, onRefundClick }) {
   );
 }
 
-function PayWalletCard({ logoSrc, onTopUpClick, onRefundClick, onAccountManageClick, balance = 0 }) {
+function PayWalletCard({
+  logoSrc,
+  onTopUpClick,
+  onRefundClick,
+  onAccountManageClick,
+  balance = 0,
+}) {
   return (
     <div className={styles.walletRow}>
       <div className={styles.verticalLabel}></div>
@@ -94,9 +100,9 @@ function PayWalletCard({ logoSrc, onTopUpClick, onRefundClick, onAccountManageCl
           </SecondaryButton>
         </div>
         <div className={styles.usageLabel}>8월 이용금액</div>
-        <div className={styles.usageValue}>400,000원</div>
+        <div className={styles.usageValue}>0원</div>
       </div>
-      <ActionRail onTopUpClick={ onTopUpClick } onRefundClick={ onRefundClick }/>
+      <ActionRail onTopUpClick={onTopUpClick} onRefundClick={onRefundClick} />
     </div>
   );
 }
@@ -119,9 +125,11 @@ export default function PayMoneyDashboard() {
         const res = await inquirePayMoney({ email });
         console.log("inquirePayMoney resp:", res);
 
-        // 응답 형태 유연 처리
         const amount =
-          (res && res.data && typeof res.data.amount === "number" && res.data.amount) ||
+          (res &&
+            res.data &&
+            typeof res.data.amount === "number" &&
+            res.data.amount) ||
           (typeof res?.amount === "number" && res.amount) ||
           0;
 
@@ -156,7 +164,9 @@ export default function PayMoneyDashboard() {
 
       <div className={styles.controls}>
         <div className={styles.rightControls}>
-          <SecondaryButton>이용내역</SecondaryButton>
+          <SecondaryButton onClick={() => navigate("/paymoney/history")}>
+            이용내역
+          </SecondaryButton>
         </div>
       </div>
 
