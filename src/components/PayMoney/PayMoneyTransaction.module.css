@@ -106,9 +106,6 @@
   background: #e6e6e6;
   margin-top: 6px;
 }
-.amountInvalid + .underline {
-  background: rgba(239, 68, 68, 0.7);
-}
 
 .metaRow {
   display: flex;
